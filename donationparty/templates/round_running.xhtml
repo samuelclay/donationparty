@@ -1,15 +1,17 @@
 {% extends "base.xhtml" %}
 
 {% block content %}
-Here's what's happening with this round.
+<div class="jumbotron">
+	<h1>Donation Party!</h1>
 
-Pay:
+	<p class="lead running"><img src="/mediafiles/img/eff.png" />Securely donate a randomly selected amount up to <strong>$20</strong>. The person who donates the most wins something cool from Amazon.</p>
 
 <form action="/charge" method="post" id="stripe_payment_form">
     {% csrf_token %}
     <input type="hidden" name="round_id" value="{{ round.url }}" />
     <script src="https://button.stripe.com/v1/button.js" class="stripe-button"
         data-key="{{ settings.STRIPE_PUBLISHABLE }}"
+	data-label="Donate"
         data-addres></script>
 </form>
 

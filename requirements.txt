@@ -4,7 +4,6 @@ amqp==1.0.6
 anyjson==0.3.3
 billiard==2.7.3.19
 celery==3.0.12
-distribute==0.6.28
 dj-database-url==0.2.1
 django-celery==3.0.11
 kombu==2.5.3

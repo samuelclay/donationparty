@@ -1,0 +1,79 @@
+@import 'elements';
+@import 'tokeninput';
+
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+.container-narrow {
+	margin: 0 auto;
+	max-width: 700px;
+}
+
+.container-narrow > hr {
+	margin: 30px 0;
+}
+
+.jumbotron {
+	margin: 60px 0;
+	text-align: center;
+	
+	h1 {
+		font-size: 72px;
+		line-height: 1;
+	}
+	
+	.btn {
+		font-size: 21px;
+		padding: 14px 24px;
+	}
+}
+
+.charities {
+	margin: 0 0 30px;
+	padding: 0;
+	float: left;
+	width: 100%;
+	
+	.charity {
+		display: inline-block;
+		width: 20%;
+		height: 120px;
+		text-align: center;
+		float: left;
+		
+		img {
+			width: 100px;
+			height: 100px;
+		}
+		
+		label {
+			border-bottom: 5px solid transparent;
+			height: 120px;
+		}
+	}
+	
+	.charity.checked {
+		label {
+			border-bottom: 5px solid #5bb75b;
+		}
+	}
+	
+	.charity:hover {
+		label {
+			background: #f1f1f1;
+		}
+	}
+}
+
+.start-party {
+	text-align: center;
+	margi: 30px 0;
+}
+
+.smallprint {
+	color: #aaa;
+	text-align: center;
+	margin: 30px 0;
+}

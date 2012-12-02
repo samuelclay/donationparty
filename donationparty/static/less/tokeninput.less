@@ -1,0 +1,147 @@
+.tokeninput{
+	position: relative; 
+	width: 500px;
+}
+
+.tokeninput .tokens{
+	position: absolute;
+	width: 100%;
+	padding-top: 2px; 
+	padding-left: 3px;
+}
+
+.tokeninput .tokens span{
+	display: block;
+	float: left;
+}
+/* The autocomplete popup (which is a table!) */
+.autocomplete{
+	position: absolute; 
+	background-color: white; 
+	left: 0px;
+	display: none; 
+	z-index: 950;
+}
+
+/* Border-Style if displayed below the input */
+.autocompleteBelow{
+	border: 1px solid black;
+	border-top: 1px dotted black;
+}
+
+.autocompleteAbove{
+	border: 1px solid black;
+	border-bottom: 1px dotted black;
+}
+
+/* Scrollable body */
+.autocomplete div{
+	overflow-y: auto;
+}
+
+/** No borders.... */
+.autocomplete table{
+	width: 100%;
+	border-spacing: 0px; 
+}
+
+/* Headers */
+.autocomplete th{
+	text-align: left; 
+	background-color: #e2c9e1;
+	border-bottom: 1px solid #999;
+	font-weight: bold;
+	padding-left: 5px;
+	font-size: 11px;
+}
+
+.autocomplete td{
+	padding-left: 5px;
+}
+
+/* Rows in the autocomplete popup */
+.autocomplete tbody tr{
+	font-size: 11px; 
+	cursor: pointer; 
+}
+
+/* Autocomplete entries that are selected with the keyboard */
+/* or hovered with the mouse */
+.autocomplete .hover{
+	color: black;
+	background-color: #ddd; 
+}
+
+/* The textfield */
+.tokeninput textarea{
+	font-family: arial, helvetica;
+	font-size: 10px;
+	overflow: hidden;
+
+	display: block;
+	width: 100%;
+	max-width:none;
+}
+
+.autocomplete .invalid{
+	text-decoration: line-through; 
+	opacity: 0.5; 
+}
+
+
+/* Tokens */
+.tokeninput .token{
+	margin-right: 5px;
+	white-space: nowrap;
+	line-height: 25px; 
+	font-size: 10px; 
+	color: black; 
+}
+
+.tokeninput .token a.before{
+	background-image: url( token_left.png );
+	background-repeat: repeat-x; 
+	padding: 4px 5px 5px 0px;
+}
+
+.tokeninput .token a.center{
+	background-image: url( token_center.png ); 
+	background-repeat: repeat-x; 
+	padding: 4px 0px 5px 0px;
+}
+
+.tokeninput .token a.after{
+	background-image: url( token_right.png ); 
+	background-repeat: repeat-x; 
+	padding: 4px 15px 5px 0px; 
+}
+
+.tokeninput span.token:hover{
+	cursor: pointer; 
+}
+
+.tokeninput span.token:hover a.before{
+	background-image: url( token_hover_left.png ); 
+}
+
+.tokeninput span.token:hover a.center{
+	background-image: url( token_hover_center.png ); 
+}
+
+
+.tokeninput span.token:hover a.after{
+	background-image: url( token_hover_right.png ); 
+}
+
+/* MAKE SURE you set the same line-height here 
+ * than for ".tokeninput .token"
+ * and the same padding as in ".tokeninput .token a.center"
+ */
+a.marker{
+	padding: 4px 0px 5px 0px; 
+	line-height: 25px; 
+}
+
+a.positionMarker{
+	padding-left: 100px;	
+}

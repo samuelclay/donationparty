@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
@@ -38,6 +39,7 @@ def round_create(request, round_id):
     charity_name = request.POST['charity']
     
     round.charity = charity_name
+    round.expire_time = datetime.now + datetime.timedelta(hours=3)
     round.save()
     
     return HttpResponseRedirect(round.absolute_url())

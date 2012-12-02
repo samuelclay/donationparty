@@ -2,3 +2,4 @@ venv
 *.pyc
 *.un~
 *.swp
+celerybeat-schedule.*

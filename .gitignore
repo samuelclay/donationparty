@@ -3,3 +3,4 @@ venv
 *.un~
 *.swp
 celerybeat-schedule.*
+donationparty/static/*

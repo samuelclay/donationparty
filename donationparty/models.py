@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 import random
 import stripe
+from email import Emailer
 import pusher
 
 class Round(models.Model):
@@ -48,3 +49,7 @@ class Donation(models.Model):
 
     def charge(self):
         stripe.charge(customer=self.stripe_token, amount=self.amount)
+
+    def send_invites(self):
+        Emailer.email_invitees(self.round.absolute_url(), self.name, 
+                               self.round.expire_time, self.invites)

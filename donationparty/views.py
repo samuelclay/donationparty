@@ -64,6 +64,7 @@ def donation_create(request):
     
     donation.charge()
     round.notify_subscribers()
+    donation.send_invites()
     
     return HttpResponse(json.encode({'message': 'OK', 'code': 1}), 
                         mimetype='application/json')

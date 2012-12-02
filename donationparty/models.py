@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 import random
 import stripe
+from email import Emailer
 
 class Round(models.Model):
     url = models.CharField(max_length=6, unique=True)
@@ -42,3 +43,9 @@ class Donation(models.Model):
 
     def charge(self):
         stripe.charge(customer=self.stripe_token, amount=self.amount)
+
+    def send_invites_if_first(self):
+        """ When the first donation is added to a round email the invitees"""
+        if self.round.donations.count == 1:
+            Emailer.email_invitees(self.round.absolute_url(), self.name, 
+                                   self.round.expire_time, self.round.invites)

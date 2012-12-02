@@ -39,7 +39,7 @@ def round_create(request, round_id):
     charity_name = request.POST['charity']
     
     round.charity = charity_name
-    round.expire_time = datetime.now + datetime.timedelta(hours=3)
+    round.expire_time = datetime.now + timedelta(hours=3)
     round.save()
     
     return HttpResponseRedirect(round.absolute_url())

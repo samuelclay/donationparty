@@ -28,7 +28,8 @@ class Round(models.Model):
         return random.random() * self.max_amount
         
     def notify_subscribers(self):
-        p = pusher.Pusher()
+        # p = pusher.Pusher()
+        p = pusher.pusher_from_url()
         p[self.url].trigger('new_donation', {})
         
 class Product(models.Model):

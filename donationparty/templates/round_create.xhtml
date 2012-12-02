@@ -8,6 +8,7 @@
 </div>
 
 <form action="" method="POST">
+	{% csrf_token %}
 	<ul class="charities">
 		<li class="charity">
 			<label><input type="radio" name="charity" value="eff" /><img src="/mediafiles/img/eff.png" /> <span>EFF</span></label>

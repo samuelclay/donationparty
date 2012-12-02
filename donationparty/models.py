@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 import random
+import stripe
 
 class Round(models.Model):
     url = models.CharField(max_length=6, unique=True)
@@ -39,3 +40,5 @@ class Donation(models.Model):
     stripe_token = models.CharField(max_length=255)
     amount = models.FloatField()
 
+    def charge(self):
+        stripe.charge(customer=self.stripe_token, amount=self.amount)

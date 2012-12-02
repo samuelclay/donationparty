@@ -7,3 +7,6 @@ redis==2.7.2
 MySQL-python==1.2.3
 boto==2.6.0
 django-ses==0.4.1
+django-zebra==0.4.3
+django-extensions==1.0.0
+stripe==1.7.6

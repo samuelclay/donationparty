@@ -29,6 +29,7 @@
 	Or invite them directly via email (comma separated):
 </p>
 <form action="/invite" method="post" id="invite_via_email">
+	{% csrf_token %}
 	<input type="hidden" name="round_id" value="{{ round.url }}" />
   <input type="text" name="invites" placeholder="bob@test.com, fred@test.com"/><br/>
   <input type="submit" />

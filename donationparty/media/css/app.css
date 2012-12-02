@@ -12,3 +12,5 @@ body{padding-top:20px;padding-bottom:40px;}
 .players .player p.name{padding-left:120px;}.players .player p.name .amount{width:120px;float:right;line-height:100px;font-size:20px;font-weight:bold;}
 .smallprint{color:#aaa;text-align:center;margin:30px 0;}
 .social{margin:30px 0;text-align:center;}.social input{width:300px;}
+.stripe-button-inner{margin-left:294px !important;}
+.lead.running{text-align:left;overflow:hidden;}.lead.running img{float:left;margin-right:30px;width:60px;height:60px;}

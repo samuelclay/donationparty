@@ -9,11 +9,6 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-#Amazon SES
-AWS_ACCESS_KEY_ID = 'AKIAIUPWVZ2ROGYLKWJQ'
-AWS_SECRET_ACCESS_KEY = 'HlN3y/i6r/4fsQD47joPvzIlMMvK3vq/zv1HV72I'
-EMAIL_BACKEND = 'django_ses.SESBackend'
-
 MANAGERS = ADMINS
 
 

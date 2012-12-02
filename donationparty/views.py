@@ -55,7 +55,6 @@ def donation_create(request):
     
     donation.charge()
     round.notify_subscribers()
-    donation.send_invites()
     
     return HttpResponseRedirect(round.absolute_url())
     

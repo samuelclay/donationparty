@@ -26,16 +26,13 @@ class Round(models.Model):
         return url
 
     def donation_amount(self):
-        return random.random() * self.max_amount
+        return max(1, random.random() * self.max_amount)
         
     def notify_subscribers(self):
-        if settings.PROD:
-            p = pusher.pusher_from_url()
-        else:
-            p = pusher.Pusher(app_id=settings.PUSHER_APP_ID,
-                              key=settings.PUSHER_KEY,
-                              secret=settings.PUSHER_SECRET)
-        # p[self.url].trigger('new_donation', {})
+        p = pusher.Pusher(app_id=settings.PUSHER_APP_ID,
+                          key=settings.PUSHER_KEY,
+                          secret=settings.PUSHER_SECRET)
+        p[self.url].trigger('new_donation', {})
         
 class Product(models.Model):
     name = models.CharField(max_length=255)

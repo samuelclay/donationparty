@@ -39,26 +39,17 @@ def round_create(request, round_id):
     round.charity = charity_name
     round.save()
     
-    return render_to_response('round_running.xhtml', {
-        'round': round,
-        'settings': settings,
-    }, context_instance=RequestContext(request))
-
+    return HttpResponseRedirect(round.absolute_url())
+    
 def donation_create(request):
-    round = get_object_or_404(Round, request.POST['round_id'])
-    name = request.POST['name']
-    email = request.POST['email']
-    stripe_token = request.POST['stripe_token']
+    round = get_object_or_404(Round, url=request.POST['round_id'])
+    stripe_token = request.POST['stripeToken']
     amount = round.donation_amount()
-    invites = request.POST['invites']
     
     data = {
-        'name': name,
-        'email': email,
         'stripe_token': stripe_token,
         'amount': amount,
         'round': round,
-        'invites': invites,
     }
     donation = Donation.objects.create(**data)
     
@@ -66,8 +57,7 @@ def donation_create(request):
     round.notify_subscribers()
     donation.send_invites()
     
-    return HttpResponse(json.encode({'message': 'OK', 'code': 1}), 
-                        mimetype='application/json')
+    return HttpResponseRedirect(round.absolute_url())
     
 def round_status(request, round_id):
     round = get_object_or_404(Round, url=round_id)

@@ -5,9 +5,13 @@ Here's what's happening with this round.
 
 Pay:
 
-<script src="https://button.stripe.com/v1/button.js" class="stripe-button"
-        data-key="{{ settings.STRIPE_PUBLISHABLE }}"></script>
-
+<form action="/charge" method="post" id="stripe_payment_form">
+    {% csrf_token %}
+    <input type="hidden" name="round_id" value="{{ round.url }}" />
+    <script src="https://button.stripe.com/v1/button.js" class="stripe-button"
+        data-key="{{ settings.STRIPE_PUBLISHABLE }}"
+        data-addres></script>
+</form>
 
 <div class="social">
     <div class="fb-send"></div>

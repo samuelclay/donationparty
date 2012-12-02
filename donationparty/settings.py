@@ -152,8 +152,10 @@ LOGGING = {
 }
 
 if '/Users' in os.getcwd():
+    PROD = False
     from dev_settings import *
 else:
+    PROD = True
     from prod_settings import *
     MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 import uuid
 import random
 import stripe
@@ -13,7 +14,7 @@ class Round(models.Model):
     closed = models.BooleanField(default=False)
     failed = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
-    max_amount = models.FloatField(blank=True, null=True)
+    max_amount = models.FloatField(default=10)
     
     def absolute_url(self):
         return '/round/%s' % self.url
@@ -24,13 +25,17 @@ class Round(models.Model):
         url = unicode(uuid.uuid4())[:6]
         return url
 
-    def donate_amount(self):
+    def donation_amount(self):
         return random.random() * self.max_amount
         
     def notify_subscribers(self):
-        # p = pusher.Pusher()
-        p = pusher.pusher_from_url()
-        p[self.url].trigger('new_donation', {})
+        if settings.PROD:
+            p = pusher.pusher_from_url()
+        else:
+            p = pusher.Pusher(app_id=settings.PUSHER_APP_ID,
+                              key=settings.PUSHER_KEY,
+                              secret=settings.PUSHER_SECRET)
+        # p[self.url].trigger('new_donation', {})
         
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -48,7 +53,13 @@ class Donation(models.Model):
     amount = models.FloatField()
 
     def charge(self):
-        stripe.charge(customer=self.stripe_token, amount=self.amount)
+        amount = int(self.amount * 100)
+        try:
+            stripe.Charge.create(card=self.stripe_token,
+                                 amount=amount,
+                                 currency='usd')
+        except stripe.InvalidRequestError, e:
+            print "STRIPE ERRROR: %s" % e
 
     def send_invites(self):
         Emailer.email_invitees(self.round.absolute_url(), self.name, 

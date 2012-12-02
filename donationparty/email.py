@@ -1,7 +1,9 @@
 from datetime import datetime
 from django.core.mail import send_mass_mail
 
+
 class Emailer:
+
   @classmethod
   def email_invitees(round_url, round_creator, round_expiration, round_invitees):
     invitees_list = round_invitees.split(',')

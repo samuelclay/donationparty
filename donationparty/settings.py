@@ -102,6 +102,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'kombu.transport.django',
+    'djcelery',
     'donationparty',
     'zebra',
 )
@@ -144,3 +146,10 @@ else:
 
 
 REDIS_POOL = redis.ConnectionPool(db=0, **REDIS)
+
+
+#celery
+BROKER_BACKEND = 'django'
+
+import djcelery
+djcelery.setup_loader()

@@ -15,7 +15,7 @@ AWS_SECRET_ACCESS_KEY = 'HlN3y/i6r/4fsQD47joPvzIlMMvK3vq/zv1HV72I'
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
 MANAGERS = ADMINS
-PREPEND_WWW = True
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -155,7 +155,7 @@ if '/Users' in os.getcwd():
     from dev_settings import *
 else:
     from prod_settings import *
-    MIDDLEWARE_CLASSES += ('donationparty.middleware.SSLRedirect',)
+    MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
 
 SSL_HOST = 'www.donationparty.com'
 HTTP_HOST = 'www.donationparty.com'

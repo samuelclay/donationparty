@@ -1,28 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Donation Party! Make a difference and have the chance to win something awesome.</title>
-		<link href="/mediafiles/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="/mediafiles/css/app.css" rel="stylesheet" media="screen">
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Make a difference and have the chance to win something awesome.">
-		
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-		<div class="container-narrow">
-			{% block content %}{% endblock %}
-		</div>
-	
-		<script src="/mediafiles/vendor/jquery-1.8.3.min.js"></script>
-		<script src="/mediafiles/vendor/underscore-1.4.2.min.js"></script>
-		<script src="/mediafiles/vendor/backbone-0.9.2.min.js"></script>
-		<script src="/mediafiles/js/base.js"></script>
-		
-		{% block javascript %}{% endblock %}
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>Donation Party! Make a difference and have the chance to win something awesome.</title>
+        <link href="/mediafiles/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="/mediafiles/css/app.css" rel="stylesheet" media="screen">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Make a difference and have the chance to win something awesome.">
+
+        <!--[if lt IE 9]>
+        	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+        <script>
+        var DP = {};
+        DP.Round = {
+            'url': "{{ round.url }}"
+        };
+        </script>
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        
+        <div class="container-narrow">
+            {% block content %}{% endblock %}
+            
+            <hr>
+            
+            <div class="footer">
+                <p>Made with sundried tomatoes and various cheeses by @blah, @blah, @tommoor and @blah</p>
+            </div>
+        </div>
+
+        <!-- Base -->
+        <script src="/mediafiles/vendor/jquery-1.8.3.min.js"></script>
+        <script src="/mediafiles/vendor/underscore-1.4.2.min.js"></script>
+        <script src="/mediafiles/vendor/backbone-0.9.2.min.js"></script>
+        <script src="/mediafiles/js/base.js"></script>
+        
+        <!-- Social Plugins -->
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=444110298970974";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        
+        {% block javascript %}{% endblock %}
+    </body>
 </html>

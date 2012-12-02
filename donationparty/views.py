@@ -64,6 +64,7 @@ def donation_create(request):
     donation = Donation.objects.create(**data)
     
     donation.charge()
+    round.notify_subscribers()
     #Send the email invites for this round if this is the first donation
     donation.send_invites_if_first()
     

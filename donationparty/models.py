@@ -3,6 +3,7 @@ import uuid
 import random
 import stripe
 from email import Emailer
+import pusher
 
 class Round(models.Model):
     url = models.CharField(max_length=6, unique=True)
@@ -26,6 +27,10 @@ class Round(models.Model):
 
     def donate_amount(self):
         return random.random() * self.max_amount
+        
+    def notify_subscribers(self):
+        p = pusher.Pusher()
+        p[self.url].trigger('new_donation', {})
         
 class Product(models.Model):
     name = models.CharField(max_length=255)

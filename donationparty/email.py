@@ -4,8 +4,7 @@ from django.core.mail import send_mass_mail
 
 
 class Emailer:
-
-  @classmethod
+  @staticmethod
   def email_invitees(round_url, round_creator, round_expiration, round_invitees):
     invitees_list = round_invitees.split(',')
     subject = "%s has invited you to a Donation Party!" %(round_creator)

@@ -150,7 +150,7 @@ if '/Users' in os.getcwd():
     from dev_settings import *
 else:
     from prod_settings import *
-    MIDDLEWARE_CLASSES += ('donationparty.middleware.SSLRedirect',)
+    MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
 
 SSL_HOST = 'www.donationparty.com'
 HTTP_HOST = 'www.donationparty.com'

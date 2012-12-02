@@ -17,3 +17,5 @@ django-zebra==0.4.3
 django-extensions==1.0.0
 stripe==1.7.6
 wsgiref==0.1.2
+pusher==0.6
+django-sslify==0.2

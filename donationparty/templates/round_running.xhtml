@@ -5,7 +5,7 @@
 <div class="jumbotron">
 	<h1>Donation Party!</h1>
 
-	<p class="lead running"><img src="/mediafiles/img/eff.png" />Securely donate a randomly selected amount up to <strong>$20</strong>. The person who donates the most wins something cool from Amazon.</p>
+	<p class="lead running"><img src="/mediafiles/img/eff.png" />Securely donate a randomly selected amount up to <strong>$10</strong>. The person who donates the most wins something cool from Amazon.</p>
 
 <form action="/charge" method="post" id="stripe_payment_form">
     {% csrf_token %}
@@ -20,9 +20,9 @@
 
 <div class="social">
 	<p>
-	Invite friends by sharing this page:
+	Share this link to invite friends to the party:
 	</p>
-	<input type="text" value="{{ request.build_absolute_uri }}" readonly="readonly" />
+	<input type="text" value="{{ request.build_absolute_uri }}" />
 	<div class="buttons">
 	    <div class="fb-send"></div>
 	    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Party time! Excellent! {{request.build_absolute_uri }}">Tweet</a>

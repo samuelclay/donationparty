@@ -1,6 +1,21 @@
 {% extends "base.xhtml" %}
 
 {% block content %}
-Closed! Here's what went down:
 
+<div class="jumbotron">
+	<h1>${{amount_donated}} Donated to {{charity name}}!</h1>
+	<p class="lead">{{winner}} won with a random donation of ${{winner_amount}} and will receive something frickin' awesome from Amazon in the next few days.</p>
+</div>
+
+<ul class="players">
+    <li class="player">
+        <img src="{{gravatar}}" width="100px" height="100px" />
+        <p class="name">{{name}} <span class="amount">${{amount}}</span></p>
+    </li>
+</ul>
+
+<div class="start-party">
+    <a href="/" class="btn btn-large btn-success">Create a Party!</a>
+    <p>Start your own party to collect donations for charity and have the chance to win something niiice.</p>
+</div>
 {% endblock %}

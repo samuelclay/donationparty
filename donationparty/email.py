@@ -8,7 +8,7 @@ class Emailer:
   def email_invitees(round_url, round_donations, round_expiration, round_invitees):
     invitees_list = round_invitees.split(',')
     subject = "You've been invited to a Donation Party!"
-    time_left = round_expiration - datetime.utcnow()
+    time_left = round_expiration.replace(tzinfo=None) - datetime.now().replace(tzinfo=None)
 
     round_donation_str = "Fake Person, Another Fake Person" #TODO: r.name for r in round_donations
     #TODO: Fancy email

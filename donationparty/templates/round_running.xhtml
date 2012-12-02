@@ -14,8 +14,13 @@ Pay:
 </form>
 
 <div class="social">
-    <div class="fb-send"></div>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+	<p>
+	Invite friends by sharing this page:
+	</p>
+	<input type="text" value="{{ request.build_absolute_uri }}" />
+	<div class="buttons">
+	    <div class="fb-send"></div>
+	    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Party time! Excellent! {{request.build_absolute_uri }}">Tweet</a>
+    	</div>
 </div>
-
 {% endblock %}

@@ -7,7 +7,7 @@
 	<p class="lead">Invite friends to donate a random (bounded) amount to a charity and one lucky winner will receive something awesome* from Amazon!</p>
 </div>
 
-<form action="">
+<form action="" method="POST">
 	<ul class="charities">
 		<li class="charity">
 			<label><input type="radio" name="charity" value="eff" /><img src="/mediafiles/img/eff.png" /> <span>EFF</span></label>
@@ -26,11 +26,12 @@
 		</li>
 	</ul>
 	
-	<input type="hidden" name="emails" class="emails"/>
+	<h3>Invite your friends<h3/>
+	<textarea name="emails" class="emails"></textarea>
 	<p>(Or use Facebook and Twitter on the next screen)</p>
 	
 	<div class="start-party">
-		<input type="submit" class="btn btn-large btn-success" href="#" value="Invite &amp; Start!" />
+		<input type="submit" class="btn btn-large btn-success" value="Invite &amp; Start!" />
 	</div>
 	
 	<p class="smallprint">*we automatically pick and ship a random item from Amazon, so you never know what you might win!</p>

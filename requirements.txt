@@ -6,3 +6,5 @@ wsgiref==0.1.2
 redis==2.7.2
 MySQL-python==1.2.3
 django-zebra==0.4.3
+django-extensions==1.0.0
+stripe==1.7.6

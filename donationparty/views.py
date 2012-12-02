@@ -61,7 +61,7 @@ def donation_create(request):
 
 def invite_emails(request):
     round = get_object_or_404(Round, url=request.POST['round_id'])
-    invites = get_object_or_404(Round, url=request.POST['invites'])
+    invites = Request.POST['invites']
     Emailer.email_invitees(round.absolute_url(), round.donations,
                                round.expire_time, invites)
     

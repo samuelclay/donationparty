@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.conf import settings
 from donationparty.models import Round, Donation
 import json
+from email import Emailer
 
 def home(request):
     round = Round.objects.create(url=Round.generate_url())
@@ -57,6 +58,12 @@ def donation_create(request):
     round.notify_subscribers()
     
     return HttpResponseRedirect(round.absolute_url())
+
+def invite_emails(request):
+    round = get_object_or_404(Round, url=request.POST['round_id'])
+    invites = get_object_or_404(Round, url=request.POST['invites'])
+    Emailer.email_invitees(round.absolute_url(), round.donations, 
+                               round.expire_time, invites)
     
 def round_status(request, round_id):
     round = get_object_or_404(Round, url=round_id)

@@ -53,6 +53,8 @@ class Donation(models.Model):
             charge = stripe.Charge.create(card=self.stripe_token,
                                           amount=amount,
                                           currency='usd')
-            import pdb; pdb.set_trace()
+            name = charge['card']['name']
+            self.name = name
+            self.save()
         except stripe.InvalidRequestError, e:
             print "STRIPE ERRROR: %s" % e

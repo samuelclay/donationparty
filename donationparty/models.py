@@ -8,7 +8,6 @@ import pusher
 class Round(models.Model):
     url = models.CharField(max_length=6, unique=True)
     charity = models.CharField(max_length=255, blank=True, null=True)
-    invites = models.TextField(blank=True, null=True)
     product = models.ForeignKey('Product', blank=True, null=True)
     expire_time = models.DateTimeField(blank=True, null=True)
     closed = models.BooleanField(default=False)
@@ -43,6 +42,7 @@ class Donation(models.Model):
     email = models.EmailField()
     name = models.CharField(max_length=255)
     round = models.ForeignKey(Round, related_name='donations')
+    invites = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
     stripe_token = models.CharField(max_length=255)
     amount = models.FloatField()

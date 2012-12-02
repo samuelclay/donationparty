@@ -49,12 +49,13 @@ class Donation(models.Model):
     stripe_token = models.CharField(max_length=255)
     amount = models.FloatField()
 
-    def charge(self):
+    def charge_card(self):
         amount = int(self.amount * 100)
         try:
-            stripe.Charge.create(card=self.stripe_token,
-                                 amount=amount,
-                                 currency='usd')
+            charge = stripe.Charge.create(card=self.stripe_token,
+                                          amount=amount,
+                                          currency='usd')
+            import pdb; pdb.set_trace()
         except stripe.InvalidRequestError, e:
             print "STRIPE ERRROR: %s" % e
 

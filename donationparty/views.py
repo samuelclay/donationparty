@@ -53,7 +53,7 @@ def donation_create(request):
     }
     donation = Donation.objects.create(**data)
     
-    donation.charge()
+    donation.charge_card()
     round.notify_subscribers()
     
     return HttpResponseRedirect(round.absolute_url())

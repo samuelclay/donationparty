@@ -1,4 +1,5 @@
 {% extends "base.xhtml" %}
+{% load donations %}
 
 {% block content %}
 <div class="jumbotron">
@@ -14,6 +15,8 @@
 	data-label="Donate"
         data-addres></script>
 </form>
+
+{% render_donations round.donations.all %}
 
 <div class="social">
 	<p>

@@ -3,7 +3,7 @@ import uuid
 
 class Round(models.Model):
     url = models.CharField(max_length=6, unique=True)
-    charity = models.ForeignKey('Charity', blank=True, null=True)
+    charity = models.CharField(max_length=255, blank=True, null=True)
     invites = models.TextField(blank=True, null=True)
     product = models.ForeignKey('Product', blank=True, null=True)
     expire_time = models.DateTimeField(blank=True, null=True)
@@ -19,10 +19,6 @@ class Round(models.Model):
         # XXX TODO: check for collision
         url = unicode(uuid.uuid4())[:6]
         return url
-
-class Charity(models.Model):
-    name = models.CharField(max_length=255)
-    image_url = models.TextField()
 
 
 class Product(models.Model):

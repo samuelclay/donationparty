@@ -50,8 +50,6 @@ class Donation(models.Model):
     def charge(self):
         stripe.charge(customer=self.stripe_token, amount=self.amount)
 
-    def send_invites_if_first(self):
-        """ When the first donation is added to a round email the invitees"""
-        if self.round.donations.count == 1:
-            Emailer.email_invitees(self.round.absolute_url(), self.name, 
-                                   self.round.expire_time, self.round.invites)
+    def send_invites(self):
+        Emailer.email_invitees(self.round.absolute_url(), self.name, 
+                               self.round.expire_time, self.invites)

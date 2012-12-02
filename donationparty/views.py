@@ -65,8 +65,7 @@ def donation_create(request):
     
     donation.charge()
     round.notify_subscribers()
-    #Send the email invites for this round if this is the first donation
-    donation.send_invites_if_first()
+    donation.send_invites()
     
     return HttpResponse(json.encode({'message': 'OK', 'code': 1}), 
                         mimetype='application/json')

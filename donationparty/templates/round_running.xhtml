@@ -28,4 +28,13 @@
 	    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Party time! Excellent! {{request.build_absolute_uri }}">Tweet</a>
     	</div>
 </div>
+<p>
+	Or invite them directly via email (comma separated):
+</p>
+<form action="/invite" method="post" id="invite_via_email">
+	{% csrf_token %}
+	<input type="hidden" name="round_id" value="{{ round.url }}" />
+  <input type="text" name="invites" placeholder="bob@test.com, fred@test.com"/><br/>
+  <input type="submit" />
+</form>
 {% endblock %}

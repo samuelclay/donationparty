@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^round/(?P<round_id>\w+)/?', 'donationparty.views.round_page', name='round'),
     url(r'^round_status/(?P<round_id>\w+)/?', 'donationparty.views.round_status', name='round_status'),
     url(r'^charge/?', 'donationparty.views.donation_create', name='donation_create'),
-    
+    url(r'^invite/?', 'donationparty.views.invite_emails', name='invite_emails'),
     url(r'zebra/',   include('zebra.urls',  namespace="zebra",  app_name='zebra') ),
 )
 

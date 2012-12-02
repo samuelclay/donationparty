@@ -1,9 +1,11 @@
+from datetime import datetime, timedelta
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.conf import settings
 from donationparty.models import Round, Donation
 import json
+from email import Emailer
 
 def home(request):
     round = Round.objects.create(url=Round.generate_url())
@@ -37,6 +39,7 @@ def round_create(request, round_id):
     charity_name = request.POST['charity']
     
     round.charity = charity_name
+    round.expire_time = datetime.now + timedelta(hours=3)
     round.save()
     
     return HttpResponseRedirect(round.absolute_url())
@@ -57,6 +60,12 @@ def donation_create(request):
     round.notify_subscribers()
     
     return HttpResponseRedirect(round.absolute_url())
+
+def invite_emails(request):
+    round = get_object_or_404(Round, url=request.POST['round_id'])
+    invites = request.POST['invites']
+    Emailer.email_invitees(round.absolute_url(), round.donations,
+                               round.expire_time, invites)
     
 def round_status(request, round_id):
     round = get_object_or_404(Round, url=round_id)

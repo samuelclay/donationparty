@@ -3,7 +3,6 @@ from django.conf import settings
 import uuid
 import random
 import stripe
-from email import Emailer
 import pusher
 
 class Round(models.Model):
@@ -44,7 +43,6 @@ class Donation(models.Model):
     email = models.EmailField()
     name = models.CharField(max_length=255)
     round = models.ForeignKey(Round, related_name='donations')
-    invites = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
     stripe_token = models.CharField(max_length=255)
     amount = models.FloatField()
@@ -58,7 +56,3 @@ class Donation(models.Model):
             import pdb; pdb.set_trace()
         except stripe.InvalidRequestError, e:
             print "STRIPE ERRROR: %s" % e
-
-    def send_invites(self):
-        Emailer.email_invitees(self.round.absolute_url(), self.name, 
-                               self.round.expire_time, self.invites)

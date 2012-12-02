@@ -16,6 +16,6 @@ class Emailer:
     You've been invited to a Donation Party!
     Donators so far: %s 
     You have %d hours %d minutes left to <a href='https://%s%s'>donate!</a>
-    """ %(round_creator, time_left.hours, time_left.minutes, settings.SSL_HOST, round_url)
+    """ %(round_donation_str, time_left.hours, time_left.minutes, settings.SSL_HOST, round_url)
     send_mass_mail(subject, email_body, 'invite@donationparty.com',
               invitees_list, fail_silently=False)

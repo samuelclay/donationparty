@@ -8,6 +8,7 @@
 </div>
 
 <form action="" method="POST">
+	{% csrf_token %}
 	<ul class="charities">
 		<li class="charity">
 			<label><input type="radio" name="charity" value="eff" /><img src="/mediafiles/img/eff.png" /> <span>EFF</span></label>
@@ -26,7 +27,7 @@
 		</li>
 	</ul>
 	
-	<h3>Invite your friends<h3/>
+	<h3>Invite your friends</h3>
 	<textarea name="emails" class="emails"></textarea>
 	<p>(Or use Facebook and Twitter on the next screen)</p>
 	

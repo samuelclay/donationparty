@@ -1,6 +1,26 @@
-<script src="/mediafiles/vendor/jquery-1.8.3.min.js"></script>
-<script src="/mediafiles/vendor/underscore-1.4.2.min.js"></script>
-<script src="/mediafiles/vendor/backbone-0.9.2.min.js"></script>
-<script src="/mediafiles/js/base.js"></script>
-
-{% block content %}{% endblock %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Donation Party! Make a difference and have the chance to win something awesome.</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/app.css" rel="stylesheet" media="screen">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Make a difference and have the chance to win something awesome.">
+		
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container-narrow">
+			{% block content %}{% endblock %}
+		</div>
+	
+		<script src="/mediafiles/vendor/jquery-1.8.3.min.js"></script>
+		<script src="/mediafiles/vendor/underscore-1.4.2.min.js"></script>
+		<script src="/mediafiles/vendor/backbone-0.9.2.min.js"></script>
+		<script src="/mediafiles/js/base.js"></script>
+	</body>
+</html>

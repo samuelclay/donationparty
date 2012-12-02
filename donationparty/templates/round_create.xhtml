@@ -1,5 +1,41 @@
 {% extends "base.xhtml" %}
 
 {% block content %}
-Choose charity and invitees...
+
+<div class="jumbotron">
+	<h1>Donation Party!</h1>
+	<p class="lead">Invite friends to donate a random (bounded) amount to a charity and one lucky winner will receive something awesome* from Amazon!</p>
+</div>
+
+<form action="">
+	<ul class="charities">
+		<li class="charity">
+			<label><input type="radio" name="charity" value="eff" /><img src="img/eff.png" /> <span>EFF</span></label>
+		</li>
+		<li class="charity">
+			<label><input type="radio" name="charity" value="childsplay" /><img src="img/childsplay.png" /> <span>Childs Play</span></label>
+		</li>
+		<li class="charity">
+			<label><input type="radio" name="charity" value="redcross" /><img src="img/redcross.png" /> <span>Red Cross</span></label>
+		</li>
+		<li class="charity">
+			<label><input type="radio" name="charity" value="oxfam" /><img src="img/oxfam.png" /> <span>Oxfam</span></label>
+		</li>
+		<li class="charity">
+			<label><input type="radio" name="charity" value="greenpeace" /><img src="img/greenpeace.png" /> <span>Greenpeace</span></label>
+		</li>
+	</ul>
+	
+	<input type="hidden" name="emails" class="emails"/>
+	<p>(Or use Facebook and Twitter on the next screen)</p>
+	
+	<div class="start-party">
+		<input type="submit" class="btn btn-large btn-success" href="#" value="Invite &amp; Start!" />
+	</div>
+	
+	<p class="smallprint">*we automatically pick and ship a random item from Amazon, so you never know what you might win!</p>
+</form>
+
+<script src="js/create.js"></script>
+
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
-from donationparty.models import Round
+from donationparty.models import Round, Donation
 import json
 
 def home(request):
@@ -42,6 +42,26 @@ def round_create(request, round_id):
         'round': round,
     }, context_instance=RequestContext(request))
 
+def donation_create(request):
+    round = get_object_or_404(Round, request.POST['round_id'])
+    name = request.POST['name']
+    email = request.POST['email']
+    stripe_token = request.POST['stripe_token']
+    amount = round.donation_amount()
+    
+    data = {
+        'name': name,
+        'email': email,
+        'stripe_token': stripe_token,
+        'amount': amount,
+        'round': round,
+    }
+    donation = Donation.objects.create(**data)
+    
+    # XXX TODO: Charge synchronously
+    
+    return HttpResponse(json.encode({'message': 'OK', 'code': 1}), 
+                        mimetype='application/json')
     
 def round_status(request, round_id):
     round = get_object_or_404(Round, url=round_id)

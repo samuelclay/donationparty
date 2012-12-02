@@ -35,13 +35,10 @@ def round_page(request, round_id):
 def round_create(request, round_id):
     round = get_object_or_404(Round, url=round_id)
     charity_name = request.POST['charity']
-    invitees = request.POST['invitees']
     
     round.charity = charity_name
-    round.invitees = invitees
     round.save()
     
-    # XXX TODO: Parse invitees and send email
     return render_to_response('round_running.xhtml', {
         'round': round,
         'settings': settings,
@@ -53,6 +50,7 @@ def donation_create(request):
     email = request.POST['email']
     stripe_token = request.POST['stripe_token']
     amount = round.donation_amount()
+    invites = request.POST['invites']
     
     data = {
         'name': name,
@@ -60,6 +58,7 @@ def donation_create(request):
         'stripe_token': stripe_token,
         'amount': amount,
         'round': round,
+        'invites': invites,
     }
     donation = Donation.objects.create(**data)
     

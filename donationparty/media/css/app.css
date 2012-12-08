@@ -21,4 +21,5 @@ hr{border-top:1px solid #f7eec4;}
 .stripe-button-inner{margin-left:294px !important;}
 .lead.running{text-align:left;padding:20px 20px 20px 100px;position:relative;}.lead.running img{position:absolute;top:20px;left:20px;width:60px;height:60px;}
 #payment-form{padding:20px;}#payment-form img{width:21px;height:14px;}
+#payment-form h3{margin:0 -20px 10px;padding:0 20px;background:#efefef;}
 .footer{text-align:center;}

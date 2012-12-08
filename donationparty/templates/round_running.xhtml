@@ -20,6 +20,8 @@
 <div class="row-fluid">
     <div class="span5 boxed">
         <form action="/charge" method="post" id="payment-form">
+            <h3>Your Donation</h3>
+            
             {% csrf_token %}
             <div class="NB-creditcards">
                 <img src="https://manage.stripe.com/img/credit_cards/visa.png">

@@ -31,7 +31,7 @@ class Round(models.Model):
         p = pusher.Pusher(app_id=settings.PUSHER_APP_ID,
                           key=settings.PUSHER_KEY,
                           secret=settings.PUSHER_SECRET)
-        p[self.url].trigger('new_donation', {})
+        p[self.url].trigger('new:charge', {})
         
 class Product(models.Model):
     name = models.CharField(max_length=255)

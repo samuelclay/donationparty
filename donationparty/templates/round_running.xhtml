@@ -62,7 +62,9 @@
     <button type="submit" class="submit-button">Submit Payment</button>
 </form>
 
-{% render_donations round.donations.all %}
+<div class="DP-donations">
+    {% render_donations round.donations.all %}
+</div>
 
 <div class="social">
 	<p>

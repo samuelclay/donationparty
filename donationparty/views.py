@@ -1,10 +1,11 @@
 import datetime
+from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.conf import settings
 from donationparty.models import Round, Donation
-import json
+from json_functions import json_encode
 from email import Emailer
 
 def home(request):
@@ -73,7 +74,10 @@ def invite_emails(request):
     
 def round_status(request, round_id):
     round = get_object_or_404(Round, url=round_id)
-    people = round.donations.all()
+    donations = round.donations.all()
+    donations_template = render_to_string('donations.xhtml', {
+        'donations': donations
+    })
     
     data = {
         'url': round.url,
@@ -81,10 +85,11 @@ def round_status(request, round_id):
         'created': round.created,
         'closed': round.closed,
         'failed': round.failed,
-        'people': [{
+        'donations': [{
             'name': person.name,
             'created': person.created,
             'amount': round.closed and person.amount,
-        } for person in people],
+        } for person in donations],
+        'donations_template': donations_template,
     }
-    return HttpResponse(json.encode(data), mimetype='application/json')
+    return HttpResponse(json_encode(data), mimetype='application/json')

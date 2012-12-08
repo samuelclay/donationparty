@@ -47,12 +47,16 @@ def round_create(request, round_id):
 def donation_create(request):
     round = get_object_or_404(Round, url=request.POST['round_id'])
     stripe_token = request.POST['stripeToken']
+    name = request.POST['name']
+    email = request.POST['email']
     amount = round.donation_amount()
     
     data = {
         'stripe_token': stripe_token,
         'amount': amount,
         'round': round,
+        'name': name,
+        'email': email,
     }
     donation = Donation.objects.create(**data)
     

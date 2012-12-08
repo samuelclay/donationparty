@@ -41,7 +41,13 @@
         <script src="/mediafiles/vendor/backbone-0.9.2.min.js"></script>
         <script src="/mediafiles/vendor/pusher.min.js"></script>
         <script src="/mediafiles/js/base.js"></script>
+        <script src="/mediafiles/js/stripe_form.js"></script>
         
+        <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+        <script type="text/javascript">
+            Stripe.setPublishableKey('{{ settings.STRIPE_PUBLISHABLE }}');
+        </script>
+
         <!-- Social Plugins -->
         <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];

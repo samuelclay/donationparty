@@ -50,11 +50,8 @@ class Donation(models.Model):
     def charge_card(self):
         amount = int(self.amount * 100)
         try:
-            charge = stripe.Charge.create(card=self.stripe_token,
-                                          amount=amount,
-                                          currency='usd')
-            name = charge['card']['name']
-            self.name = name
-            self.save()
+            stripe.Charge.create(card=self.stripe_token,
+                                 amount=amount,
+                                 currency='usd')
         except stripe.InvalidRequestError, e:
             print "STRIPE ERRROR: %s" % e

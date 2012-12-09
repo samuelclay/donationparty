@@ -10,6 +10,7 @@ def render_donations(context, round):
     return {
         'donated': donated,
         'donations': round.donations.all,
+        'round': round
     }
     
 @register.inclusion_tag('payment_info.xhtml', takes_context=True)
@@ -22,8 +23,8 @@ def render_payment_info(context, round, donated=False, **kwargs):
         'donated': donated,
     }
 
-@register.filter(name='round')
-def round(value, arg):
+@register.filter(name='round_to')
+def round_to(value, arg):
     return __builtins__['round'](value, arg)
     
 @register.filter(name='relative')

@@ -17,18 +17,18 @@ body{padding-top:20px;padding-bottom:40px;background:#fdfbf1;}
 .social .fb-send{position:relative;top:-3px;}
 .stripe-button-inner{margin-left:294px !important;}
 .lead.running{text-align:left;padding:20px 20px 20px 120px;position:relative;font-size:20px;}.lead.running img{position:absolute;top:20px;left:20px;width:80px;height:80px;}
-.payment-info{padding:20px;margin:0;}.payment-info .form-row{position:relative;}
-.payment-info .creditcards{position:absolute;top:0;right:0;}.payment-info .creditcards img{width:21px;height:14px;}
-.payment-info label{margin:0 0 2px;}
-.payment-info input[type=text]{width:96%;}
-.payment-info input.card-cvc{width:30px;}
-.payment-info select.card-expiry-month{width:120px;margin-right:10px;}
-.payment-info select.card-expiry-year{width:60px;}
-.payment-info h3{margin:-20px -20px 10px;padding:5px 20px;background:#efefef;}
-.payment-info .donate{text-align:center;margin:20px 0;float:left;width:100%;}.payment-info .donate input{margin:0 auto;}
-.payment-info .btn.active{background:#5bb75b url('/mediafiles/img/loading.gif') no-repeat center center;color:transparent;text-shadow:none;}
+#payment-form{padding:20px;margin:0;}#payment-form .form-row{position:relative;}
+#payment-form .creditcards{position:absolute;top:0;right:0;}#payment-form .creditcards img{width:21px;height:14px;}
+#payment-form label{margin:0 0 2px;}
+#payment-form input[type=text]{width:96%;}
+#payment-form input.card-cvc{width:30px;}
+#payment-form select.card-expiry-month{width:120px;margin-right:10px;}
+#payment-form select.card-expiry-year{width:60px;}
+#payment-form h3{margin:-20px -20px 10px;padding:5px 20px;background:#efefef;}
+#payment-form .donate{text-align:center;margin:20px 0;float:left;width:100%;}#payment-form .donate input{margin:0 auto;}
+#payment-form .btn.active{background:#5bb75b url('/mediafiles/img/loading.gif') no-repeat center center;color:transparent;text-shadow:none;}
 .donations{list-style:none;}.donations li.empty{background:url('/mediafiles/img/arrow-nw.png') no-repeat left top;padding-top:130px;font-size:21px;text-align:center;color:rgba(0, 0, 0, 0.5);margin:80px 50px;line-height:1.2;}
-.donations li.nearly.empty{margin-top:0px;padding-top:120px;}
+.donations li.nearly.empty{margin-top:10px;}
 .donations li.DP-donation{position:relative;border-top:1px solid #fff;border-bottom:1px solid #f7eec4;padding:20px 0 20px 80px;text-shadow:0 1px 0 #fff;}.donations li.DP-donation .DP-donation-avatar{border:3px solid #fff;position:absolute;top:20px;left:0;-webkit-border-radius:33px;-moz-border-radius:33px;border-radius:33px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;-webkit-box-shadow:0 2px 1px rgba(0, 0, 0, 0.25);-moz-box-shadow:0 2px 1px rgba(0, 0, 0, 0.25);box-shadow:0 2px 1px rgba(0, 0, 0, 0.25);}.donations li.DP-donation .DP-donation-avatar img{width:60px;height:60px;-webkit-border-radius:30px;-moz-border-radius:30px;border-radius:30px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;}
 .donations li.DP-donation .DP-donation-amount{position:absolute;top:40px;right:20px;font-size:28px;color:rgba(0, 0, 0, 0.7);}
 .donations li.DP-donation h3{line-height:1.6;margin:0;}

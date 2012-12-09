@@ -26,3 +26,26 @@ class Emailer:
     for invitee in invitees_list:
         email = get_templated_mail('invite', context={}, from_email=email_from, to=[invitee])
         email.send()
+
+  @staticmethod
+  def round_over(round):
+      """
+      emails sent when a round ends
+      TODO: send a separate email to the winner
+      """
+      from_email = 'notify@donationparty.com'
+      if round.failed:
+          template = 'roundFailed'
+      else:
+          template = 'roundEnded'
+
+      context = {
+          'winner': 'round.winner',
+          'charity': round.charity,
+          'url': round.url
+      }
+
+      donators = round.donations.all()
+      emails = [donator.email for donator in donators]
+
+      multi_templated_email(template, emails, from_email, context)

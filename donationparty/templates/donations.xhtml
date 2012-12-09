@@ -7,18 +7,26 @@
         </div>
         <h3 class="DP-donation-name">{{ donation.name }}</h3>
         <p class="DP-donation-time">Donated {{ donation.created|relative }} ago</p>
-        <p class="DP-donation-amount">${{ donation.amount|round:2 }}</p>
+        <p class="DP-donation-amount">
+            {% if not round.closed %}
+                $$$
+            {% else %}
+                ${{ donation.amount|round_to:2 }}
+            {% endif %}
+        </p>
     </li>
 {% endfor %}
 
-{% if donations and not donated %}
-    <li class="nearly empty">
-        <p>Donate now to put money to a good cause and have a chance to win!</p>
-    </li>
-{% endif %}
+{% if not round.closed %}
+    {% if donations and not donated %}
+        <li class="nearly empty">
+            <p>Donate now to put money to a good cause and have a chance to win!</p>
+        </li>
+    {% endif %}
 
-{% if not donations %}
-    <li class="empty">
-        <p>Awesome! Now donate a random amount to start the party, then invite your friends...</p>
-    </li>
+    {% if not donations %}
+        <li class="empty">
+            <p>Awesome! Now donate a random amount to start the party, then invite your friends...</p>
+        </li>
+    {% endif %}
 {% endif %}

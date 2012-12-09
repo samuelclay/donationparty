@@ -13,8 +13,16 @@ body {
 	max-width: 760px;
 }
 
+.highlight {
+	background: #fff;
+	padding: 30px 0;
+	border-top: 1px solid darken(#fdfbf1, 10%);
+	border-bottom: 1px solid darken(#fdfbf1, 10%);
+}
+
 .container-narrow > hr {
 	margin: 30px 0;
+	border-top: 1px solid darken(#fdfbf1, 10%);
 }
 
 .jumbotron {
@@ -26,21 +34,16 @@ body {
 		line-height: 1;
 		text-shadow: 0 1px 0 #fff;
 	}
-
-	.btn {
-		font-size: 21px;
-		padding: 14px 24px;
-	}
 }
 
 .boxed {
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 	background: #fff;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 .charities {
-	margin: 0 0 60px;
+	margin: 0 0 40px;
 	padding: 0;
 	float: left;
 	width: 100%;
@@ -65,7 +68,7 @@ body {
 
 	.charity.checked {
 		label {
-			background: #ffffff;
+			background: #f1f1f1;
 			border-bottom: 5px solid #5bb75b;
 		}
 	}
@@ -79,35 +82,6 @@ body {
 
 .start-party {
 	text-align: center;
-	margi: 30px 0;
-}
-
-.players {
-    .player {
-        position: relative;
-
-        img {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-        }
-
-        p.name {
-            padding-left: 120px;
-
-            .amount {
-                width: 120px;
-                float: right;
-                line-height: 100px;
-                font-size: 20px;
-                font-weight: bold;
-            }
-        }
-    }
-}
-
-hr {
-	border-top: 1px solid darken(#fdfbf1, 10%);
 }
 
 .smallprint {
@@ -193,7 +167,7 @@ hr {
 	}
 	
 	select.card-expiry-year {
-		width: 80px;
+		width: 60px;
 	}
 	
 	h3 {
@@ -237,11 +211,35 @@ hr {
 		position: relative;
 		border-top: 1px solid #fff;
 		border-bottom: 1px solid darken(#fdfbf1, 10%);
+		padding: 20px 0 20px 80px;
+		text-shadow: 0 1px 0 #fff;
 		
 		.DP-donation-avatar {
+			border: 3px solid #fff;
 			position: absolute;
-			top: 0;
+			top: 20px;
 			left: 0;
+			.rounded(33px);
+			.box-shadow(0 2px 1px rgba(0,0,0,0.25));
+			
+			img {
+				width: 60px;
+				height: 60px;
+				.rounded(30px);
+			}
+		}
+		
+		.DP-donation-amount {
+			position: absolute;
+			top: 40px;
+			right: 20px;
+			font-size: 28px;
+			color: rgba(0,0,0,0.7);
+		}
+		
+		h3 {
+			line-height: 1.6;
+			margin: 0;
 		}
 	}
 	
@@ -255,6 +253,18 @@ hr {
 }
 
 .footer {
-	text-align: center;
 	color: rgba(0, 0, 0, 0.4);
+	
+	.powered-by {
+		padding: 10px 0 0;
+	}
+	
+	.powered-by-stripe {
+		float: right;
+		
+		img {
+			width: 119px;
+			height: 26px;
+		}
+	}
 }

@@ -7,33 +7,38 @@
 	<p class="lead">Invite friends to donate a randomly selected amount (up to $10) to charity and one lucky winner will receive something awesome* from Amazon!</p>
 </div>
 
+</div>
+<div class="highlight">
+<div class="container-narrow">
+
 <form action="" method="POST">
 	{% csrf_token %}
 	<ul class="charities">
-		<li class="charity">
+		<li class="charity" title="Electronic Frontier Foundation">
 			<label><input type="radio" name="charity" value="eff" /><img src="/mediafiles/img/eff.png" /> <span>EFF</span></label>
 		</li>
-		<li class="charity">
+		<li class="charity" title="Childs Play">
 			<label><input type="radio" name="charity" value="childsplay" /><img src="/mediafiles/img/childsplay.png" /> <span>Childs Play</span></label>
 		</li>
-		<li class="charity">
+		<li class="charity" title="Red Cross">
 			<label><input type="radio" name="charity" value="redcross" /><img src="/mediafiles/img/redcross.png" /> <span>Red Cross</span></label>
 		</li>
-		<li class="charity">
+		<li class="charity" title="Oxfam">
 			<label><input type="radio" name="charity" value="oxfam" /><img src="/mediafiles/img/oxfam.png" /> <span>Oxfam</span></label>
 		</li>
-		<li class="charity">
+		<li class="charity" title="Greenpeace">
 			<label><input type="radio" name="charity" value="greenpeace" /><img src="/mediafiles/img/greenpeace.png" /> <span>Greenpeace</span></label>
 		</li>
 	</ul>
 	
-	
 	<div class="start-party">
 		<input type="submit" class="btn btn-large btn-success" value="Start the party!" />
 	</div>
-	
-	<p class="smallprint">*we automatically pick and ship a random item from Amazon, so you never know what you might win!</p>
 </form>
+
+</div>
+</div>
+<div class="container-narrow">
 
 {% endblock %}
 

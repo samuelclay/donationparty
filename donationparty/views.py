@@ -96,6 +96,7 @@ def round_status(request, round_id, donated=False):
         'created': round.created,
         'closed': round.closed,
         'failed': round.failed,
+        'seconds_left': round.seconds_left,
         'donations': [{
             'name': person.name,
             'created': person.created,

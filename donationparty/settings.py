@@ -152,7 +152,7 @@ else:
     PROD = True
     from prod_settings import *
     MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
-
+USE_TZ = False
 SSL_HOST = 'www.donationparty.com'
 HTTP_HOST = 'www.donationparty.com'
 

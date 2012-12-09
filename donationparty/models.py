@@ -42,6 +42,10 @@ class Round(models.Model):
             "greenpeace": "Greenpeace",
         }
         return charities[self.charity]
+    
+    @property
+    def seconds_left(self):
+        return (self.expire_time - datetime.datetime.now()).seconds
         
     @classmethod
     def expire_rounds(cls):

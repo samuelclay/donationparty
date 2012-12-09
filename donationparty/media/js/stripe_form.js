@@ -8,7 +8,7 @@ DP.PaymentForm.prototype = {
         $("#payment-form").submit(_.bind(function(event) {
             // disable the submit button to prevent repeated clicks
             var $button = $('.submit-button');
-            $button.attr("disabled", "disabled").addClass('processing');
+            $button.attr("disabled", "disabled").addClass('active');
 
             Stripe.createToken({
                 number: $('.card-number').val(),

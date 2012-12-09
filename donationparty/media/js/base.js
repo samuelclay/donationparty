@@ -27,6 +27,7 @@ DP.RealTime.prototype = {
     renderDonations: function(data) {
         console.log(["Round status", data]);
         $('.donations').html(data.donations_template);
+        $('.payment-info').html(data.payment_info_template);
     }
     
 };

@@ -64,7 +64,8 @@ def donation_create(request):
     donation.charge_card()
     round.notify_subscribers()
     
-    return round_status(request, round.url)
+    
+    return round_status(request, round.url, donated=True)
 
 def invite_emails(request):
     round = get_object_or_404(Round, url=request.POST['round_id'])
@@ -72,11 +73,20 @@ def invite_emails(request):
     Emailer.email_invitees(round.absolute_url(), round.donations,
                                round.expire_time, invites)
     
-def round_status(request, round_id):
+def round_status(request, round_id, donated=False):
     round = get_object_or_404(Round, url=round_id)
+    response = HttpResponse(mimetype='application/json')
+
+    if donated:
+        response.set_cookie(str('donated_%s' % round.url), 'yup')
+
     donations = round.donations.all()
     donations_template = render_to_string('donations.xhtml', {
         'donations': donations
+    })
+    payment_info_template = render_to_string('payment_info.xhtml', {
+        'round': round,
+        'donated': True,
     })
     
     data = {
@@ -91,8 +101,12 @@ def round_status(request, round_id):
             'amount': round.closed and __builtins__['round'](person.amount, 2),
         } for person in donations],
         'donations_template': donations_template,
+        'payment_info_template': payment_info_template,
     }
-    return HttpResponse(json_encode(data), mimetype='application/json')
+    
+    response.write(json_encode(data))
+    
+    return response
     
 def cron(request):
     Round.expire_rounds()

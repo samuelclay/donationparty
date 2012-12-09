@@ -7,6 +7,9 @@ from templated_email import get_templated_mail
 class Emailer:
   @staticmethod
   def email_invitees(round_url, round_donations, round_expiration, round_invitees):
+    """
+    email sent by round creator to invite other people to the round by email
+    """
     email_from = 'invite@donationparty.com'
     invitees_list = round_invitees.split(',')
     time_left = round_expiration.replace(tzinfo=None) - datetime.now().replace(tzinfo=None)

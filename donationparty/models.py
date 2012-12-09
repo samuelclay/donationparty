@@ -84,7 +84,7 @@ class Round(models.Model):
         donations = self.donations.all()
         max_donator = None
         for donation in donations:
-            if not max_donator or donation.amount > max_donator:
+            if not max_donator or donation.amount > max_donator.amount:
                 max_donator = donation
         
         return max_donator

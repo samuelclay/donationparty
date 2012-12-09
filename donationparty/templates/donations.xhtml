@@ -1,7 +1,7 @@
 {% load donations %}
 
 {% for donation in donations %}
-    <li class="DP-donation">
+    <li class="DP-donation {% if round.winner == donation %}highlighted{% endif %}">
         <div class="DP-donation-avatar">
             <img class="DP-donation-avatar-photo" src="{{ donation.gravatar_url }}">
         </div>

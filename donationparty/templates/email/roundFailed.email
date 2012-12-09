@@ -1,0 +1,6 @@
+{% block subject %}Not enough people donated in the round{% endblock %}
+
+
+{% block plain %}
+The round at {{url}} ended because not enough people donated. :(
+{% endblock %}

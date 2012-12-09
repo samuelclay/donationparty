@@ -7,6 +7,8 @@ import stripe
 import pusher
 import datetime
 
+from email import Emailer
+
 class Round(models.Model):
     url = models.CharField(max_length=6, unique=True)
     charity = models.CharField(max_length=255, blank=True, null=True)
@@ -57,12 +59,11 @@ class Round(models.Model):
         if total_raised >= self.max_amount:
             self.failed = False
             self.secret_token = uuid.uuid4()[:40]
-            self.save()
-            # XXX TODO: Email everybody
         else:
             self.failed = True
-            self.save()
-            # XXX TODO: Email everybody
+        self.save()
+
+        Emailer.round_over(self)
         
     def random_donation_amount(self):
         return max(1, random.random() * self.max_amount)

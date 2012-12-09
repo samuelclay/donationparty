@@ -4,9 +4,20 @@ from django.core import mail
 
 from templated_email import get_templated_mail
 
+def multi_templated_email(templateName, to_emails, from_email, context):
+    """
+    send separate emails to multiple recipients using a template
+    """
+    for to in to_emails:
+      email = get_templated_mail(templateName, context=context, from_email=from_email, to=[to])
+      email.send()
+
 class Emailer:
   @staticmethod
   def email_invitees(round_url, round_donations, round_expiration, round_invitees):
+    """
+    email sent by round creator to invite other people to the round by email
+    """
     email_from = 'invite@donationparty.com'
     invitees_list = round_invitees.split(',')
     time_left = round_expiration.replace(tzinfo=None) - datetime.now().replace(tzinfo=None)
@@ -15,3 +26,26 @@ class Emailer:
     for invitee in invitees_list:
         email = get_templated_mail('invite', context={}, from_email=email_from, to=[invitee])
         email.send()
+
+  @staticmethod
+  def round_over(round):
+      """
+      emails sent when a round ends
+      TODO: send a separate email to the winner
+      """
+      from_email = 'notify@donationparty.com'
+      if round.failed:
+          template = 'roundFailed'
+      else:
+          template = 'roundEnded'
+
+      context = {
+          'winner': 'round.winner',
+          'charity': round.charity,
+          'url': round.url
+      }
+
+      donators = round.donations.all()
+      emails = [donator.email for donator in donators]
+
+      multi_templated_email(template, emails, from_email, context)

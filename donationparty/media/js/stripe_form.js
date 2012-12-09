@@ -22,7 +22,6 @@ DP.PaymentForm.prototype = {
     },
     
     stripeResponseHandler: function(status, response) {
-        debugger;
         if (response.error) {
             $('.submit-button').removeAttr("disabled");
             $(".payment-errors").html(response.error.message);

@@ -7,7 +7,7 @@
         </div>
         <h3 class="DP-donation-name">{{ donation.name }}</h3>
         <p class="DP-donation-time">Donated {{ donation.relative_date }} ago</p>
-        <p class="DP-donation-amount">{{ donation.amount|round:2 }}</p>
+        <p class="DP-donation-amount">${{ donation.amount|round:2 }}</p>
     </li>
 {% endfor %}
 

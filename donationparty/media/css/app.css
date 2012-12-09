@@ -23,7 +23,7 @@ body{padding-top:20px;padding-bottom:40px;background:#fdfbf1;}
 #payment-form input[type=text]{width:96%;}
 #payment-form input.card-cvc{width:30px;}
 #payment-form select.card-expiry-month{width:120px;margin-right:10px;}
-#payment-form select.card-expiry-year{width:80px;}
+#payment-form select.card-expiry-year{width:60px;}
 #payment-form h3{margin:-20px -20px 10px;padding:5px 20px;background:#efefef;}
 #payment-form .donate{text-align:center;margin:20px 0;float:left;width:100%;}#payment-form .donate input{margin:0 auto;}
 #payment-form .btn.active{background:#5bb75b url('/mediafiles/img/loading.gif') no-repeat center center;color:transparent;text-shadow:none;}
@@ -33,4 +33,5 @@ body{padding-top:20px;padding-bottom:40px;background:#fdfbf1;}
 .donations li.DP-donation h3{line-height:1.6;margin:0;}
 .donations li.DP-donation:first-child{border-top:0;}
 .donations li.DP-donation:last-child{border-bottom:0;}
-.footer{color:rgba(0, 0, 0, 0.4);}
+.footer{color:rgba(0, 0, 0, 0.4);}.footer .powered-by{padding:10px 0 0;}
+.footer .powered-by-stripe{float:right;}.footer .powered-by-stripe img{width:119px;height:26px;}

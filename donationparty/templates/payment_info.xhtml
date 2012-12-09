@@ -3,32 +3,38 @@
 
     Good job!
 {% else %}
-    <form action="/charge" method="post" id="payment-form">
-        <h3>Your Donation</h3>
-    
-        {% csrf_token %}
-        <input type="hidden" name="round_id" value="{{ round.url }}" />
-        <span class="payment-errors text-error"></span>
-        <div class="form-row">
-            <label for="donator-name">Your name</label>
-            <input type="text" name="name" id="donator-name" />
+<form action="/charge" method="post" id="payment-form">
+    <h3>Your Donation</h3>
+            
+    {% csrf_token %}
+    <input type="hidden" name="round_id" value="{{ round.url }}" />
+    <span class="payment-errors text-error"></span>
+    <div class="form-row">
+        <label for="donator-name">Your name</label>
+        <input type="text" name="name" id="donator-name" />
+    </div>
+    <div class="form-row">
+        <label for="donator-email">Your email</label>
+        <input type="text" name="email" id="donator-email" />
+    </div>
+    <div class="form-row">
+        <div class="creditcards">
+            <img src="https://manage.stripe.com/img/credit_cards/visa@2x.png">
+            <img src="https://manage.stripe.com/img/credit_cards/mastercard@2x.png">
+            <img src="https://manage.stripe.com/img/credit_cards/amex@2x.png">
+            <img src="https://manage.stripe.com/img/credit_cards/discover@2x.png">
         </div>
-        <div class="form-row">
-            <label for="donator-email">Your email</label>
-            <input type="text" name="email" id="donator-email" />
-        </div>
-        <div class="form-row">
-            <div class="creditcards">
-                <img src="https://manage.stripe.com/img/credit_cards/visa@2x.png">
-                <img src="https://manage.stripe.com/img/credit_cards/mastercard@2x.png">
-                <img src="https://manage.stripe.com/img/credit_cards/amex@2x.png">
-                <img src="https://manage.stripe.com/img/credit_cards/discover@2x.png">
+        <label for="card-number">Card number</label>
+        <input type="text" size="20" autocomplete="off" class="card-number" id="card-number" />
+    </div>
+    <div class="form-row">
+        <span class="span3">
+            <div class="form-row">
+                <label>CVC</label>
+                <input type="text" size="4" autocomplete="off" class="card-cvc" />
             </div>
-            <label for="card-number">Card number</label>
-            <input type="text" size="20" autocomplete="off" class="card-number" id="card-number" />
-        </div>
-        <div class="form-row">
-            <span class="span10">
+        </span>
+        <span class="span9">
             <label>Expiry</label>
             <select class="card-expiry-month">
                 <option value="01">01 - January</option>
@@ -54,15 +60,9 @@
                 <option value="2018">2018</option>
             </select>
         </span>
-        <span class="span2">
-            <div class="form-row">
-                <label>CVC</label>
-                <input type="text" size="4" autocomplete="off" class="card-cvc" />
-            </div>
-        </span>
-        </div>
-        <div class="donate">
-            <button type="submit" class="submit-button btn btn-success btn-large">Donate $1 - $10</button>
-        </div>
-    </form>
+    </div>
+    <div class="donate">
+        <button type="submit" class="submit-button btn btn-success btn-large">Donate $1 - $10</button>
+    </div>
+</form>
 {% endif %}

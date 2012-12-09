@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+import hashlib
 import uuid
 import random
 import stripe
@@ -24,6 +25,17 @@ class Round(models.Model):
         # XXX TODO: check for collision
         url = unicode(uuid.uuid4())[:6]
         return url
+    
+    @property
+    def charity_name(self):
+        charities = {
+            "eff": "Electronic Frontier Foundation",
+            "childsplay": "Childsplay",
+            "redcross": "Red Cross",
+            "oxfam": "Oxfam",
+            "greenpeace": "Greenpeace",
+        }
+        return charities[self.charity]
         
     @classmethod
     def expire_rounds(cls):
@@ -78,3 +90,8 @@ class Donation(models.Model):
                                  currency='usd')
         except stripe.InvalidRequestError, e:
             print "STRIPE ERRROR: %s" % e
+    
+    def gravatar_url(self):
+        return "https://www.gravatar.com/avatar/%s" % (
+            hashlib.md5(self.email).hexdigest()
+        )

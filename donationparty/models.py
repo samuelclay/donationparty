@@ -54,9 +54,7 @@ class Round(models.Model):
             return
         
         self.closed = True
-        donations = self.donations.all()
-        total_raised = sum(donation.amount for donation in donations)
-        if total_raised >= self.max_amount:
+        if self.total_raised() >= self.max_amount:
             self.failed = False
             self.secret_token = uuid.uuid4()[:40]
         else:
@@ -73,6 +71,9 @@ class Round(models.Model):
                           key=settings.PUSHER_KEY,
                           secret=settings.PUSHER_SECRET)
         p[self.url].trigger('new:charge', {})
+
+    def total_raised(self):
+        return sum(donation.amount for donation in self.donations.all())
         
 class Product(models.Model):
     name = models.CharField(max_length=255)

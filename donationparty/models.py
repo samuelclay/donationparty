@@ -58,7 +58,7 @@ class Round(models.Model):
         total_raised = sum(donation.amount for donation in donations)
         if total_raised >= self.max_amount:
             self.failed = False
-            self.secret_token = uuid.uuid4()[:40]
+            self.secret_token = str(uuid.uuid4())[:40].replace('-', '')
         else:
             self.failed = True
         self.save()

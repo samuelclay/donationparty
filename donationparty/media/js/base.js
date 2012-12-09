@@ -33,12 +33,16 @@ DP.RealTime.prototype = {
         $('.donations').html(data.donations_template);
         $('.payment-info').html(data.payment_info_template);
         this.secondsLeft = data.seconds_left;
+        if (data.closed) {
+            window.location.href = window.location.href;
+        }
     },
     
     renderTimer: function() {
         var $timer = $('.timer');
         var minutes = Math.floor(this.secondsLeft / 60);
         var seconds = this.secondsLeft % 60;
+        if (seconds <= 9) seconds = "0" + seconds;
         $timer.html(minutes + ":" + seconds + " left");
         this.secondsLeft -= 1;
     }

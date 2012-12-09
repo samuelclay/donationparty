@@ -4,7 +4,8 @@
 {% block content %}
 
 <div class="boxed lead running">
-    <img src="/mediafiles/img/eff.png" />
+    <img src="/mediafiles/img/{{ round.charity }}.png" />
+    <h2>{{ round.charity_name }}</h2>
     <p>Securely donate a randomly selected amount between <strong>$1 and $10</strong>. The person who donates the most wins something cool from Amazon!</p>
     
     <div class="social">
@@ -12,7 +13,7 @@
         <input type="text" value="{{ request.build_absolute_uri }}" name="share"/>
         <span class="buttons">
             <div class="fb-send"></div>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Party time! Excellent! {{request.build_absolute_uri }}">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Party time! Excellent! {{ request.build_absolute_uri }}">Tweet</a>
         </span>
     </div>
 </div>
@@ -35,10 +36,10 @@
             </div>
             <div class="form-row">
                 <div class="creditcards">
-                    <img src="https://manage.stripe.com/img/credit_cards/visa.png">
-                    <img src="https://manage.stripe.com/img/credit_cards/mastercard.png">
-                    <img src="https://manage.stripe.com/img/credit_cards/amex.png">
-                    <img src="https://manage.stripe.com/img/credit_cards/discover.png">
+                    <img src="https://manage.stripe.com/img/credit_cards/visa@2x.png">
+                    <img src="https://manage.stripe.com/img/credit_cards/mastercard@2x.png">
+                    <img src="https://manage.stripe.com/img/credit_cards/amex@2x.png">
+                    <img src="https://manage.stripe.com/img/credit_cards/discover@2x.png">
                 </div>
                 <label for="card-number">Card number</label>
                 <input type="text" size="20" autocomplete="off" class="card-number" id="card-number" />
@@ -78,7 +79,7 @@
             </span>
             </div>
             <div class="donate">
-                <button type="submit" class="submit-button btn btn-primary btn-large">Donate $1 - $10</button>
+                <button type="submit" class="submit-button btn btn-success btn-large">Donate $1 - $10</button>
             </div>
         </form>
     </div>

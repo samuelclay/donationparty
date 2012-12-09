@@ -65,7 +65,7 @@ body {
 
 	.charity.checked {
 		label {
-			background: #f5f5f5;
+			background: #ffffff;
 			border-bottom: 5px solid #5bb75b;
 		}
 	}
@@ -143,15 +143,16 @@ hr {
 
 .lead.running {
 	text-align: left;
-	padding: 20px 20px 20px 100px;
+	padding: 20px 20px 20px 120px;
 	position: relative;
+	font-size: 20px;
 	
 	img {
 		position: absolute;
 		top: 20px;
 		left: 20px;
-		width: 60px;
-		height: 60px;
+		width: 80px;
+		height: 80px;
 	}
 }
 
@@ -167,6 +168,11 @@ hr {
 		position: absolute;
 		top: 0;
 		right: 0;
+		
+		img {
+			width: 21px;
+			height: 14px;
+		}
 	}
 	
 	label {
@@ -190,11 +196,6 @@ hr {
 		width: 80px;
 	}
 	
-	.creditcards img {
-		width: 21px;
-		height: 14px;
-	}
-	
 	h3 {
 		margin: -20px -20px 10px;
 		padding: 5px 20px;
@@ -211,6 +212,12 @@ hr {
 			margin: 0 auto;
 		}
 	}
+	
+	.btn.active {
+		background: #5bb75b url('/mediafiles/img/loading.gif') no-repeat center center;
+		color: transparent;
+		text-shadow: none;
+	}
 }
 
 .donations {
@@ -224,6 +231,26 @@ hr {
 		color: rgba(0, 0, 0, 0.5);
 		margin: 80px 50px;
 		line-height: 1.2;
+	}
+	
+	li.DP-donation {
+		position: relative;
+		border-top: 1px solid #fff;
+		border-bottom: 1px solid darken(#fdfbf1, 10%);
+		
+		.DP-donation-avatar {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+	
+	li.DP-donation:first-child {
+		border-top: 0;
+	}
+	
+	li.DP-donation:last-child {
+		border-bottom: 0;
 	}
 }
 

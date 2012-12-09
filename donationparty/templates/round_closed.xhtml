@@ -12,8 +12,8 @@
 {% else %}
 <div class="boxed lead running">
     <img src="/mediafiles/img/{{ round.charity }}.png" />
-    <h2>${{amount_donated}} Donated to {{ round.charity_name }}!</h2>
-    <p class="lead">Give yourselves a huge pat on the back. WINNER won with a random donation of <strong>$AMOUNT</strong> and will receive something frickin' awesome in the mail soon!</p>
+    <h2>${{ round.total_raised|round_to:2 }} Donated to {{ round.charity_name }}!</h2>
+    <p class="lead">Give yourselves a huge pat on the back. {{ round.winner.name }} won with a random donation of <strong>${{ round.winner.amount|round_to:2 }}</strong> and will receive something frickin' awesome in the mail soon!</p>
 </div>
 {% endif %}
 

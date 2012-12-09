@@ -1,6 +1,6 @@
 import datetime
 from django.template.loader import render_to_string
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.conf import settings
@@ -82,7 +82,8 @@ def round_status(request, round_id, donated=False):
 
     donations = round.donations.all()
     donations_template = render_to_string('donations.xhtml', {
-        'donations': donations
+        'donations': donations,
+        'donated': True,
     })
     payment_info_template = render_to_string('payment_info.xhtml', {
         'round': round,
@@ -107,6 +108,18 @@ def round_status(request, round_id, donated=False):
     response.write(json_encode(data))
     
     return response
+
+def address_verification(request, round_id, secret_token):
+    round = get_object_or_404(Round, url=round_id)
+    if round.secret_token != secret_token:
+        raise HttpResponseForbidden
+    
+    if request.method == 'POST':
+        round.winning_address1 = request.POST['address1']
+        round.winning_address2 = request.POST['address2']
+        round.save()
+    
+    
     
 def cron(request):
     Round.expire_rounds()

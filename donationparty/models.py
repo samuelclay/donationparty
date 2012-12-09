@@ -16,6 +16,9 @@ class Round(models.Model):
     failed = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     max_amount = models.FloatField(default=10)
+    winning_address1 = models.CharField(max_length=255, blank=True, null=True)
+    winning_address2 = models.CharField(max_length=255, blank=True, null=True)
+    secret_token = models.CharField(max_length=40, blank=True, null=True)
     
     def absolute_url(self):
         return '/round/%s' % self.url
@@ -53,11 +56,13 @@ class Round(models.Model):
         total_raised = sum(donation.amount for donation in donations)
         if total_raised >= self.max_amount:
             self.failed = False
+            self.secret_token = uuid.uuid4()[:40]
+            self.save()
             # XXX TODO: Email everybody
         else:
             self.failed = True
+            self.save()
             # XXX TODO: Email everybody
-        self.save()
         
     def random_donation_amount(self):
         return max(1, random.random() * self.max_amount)

@@ -6,7 +6,6 @@ import random
 import stripe
 import pusher
 import datetime
-from date_functions import relative_timesince
 
 class Round(models.Model):
     url = models.CharField(max_length=6, unique=True)
@@ -96,7 +95,3 @@ class Donation(models.Model):
         return "https://www.gravatar.com/avatar/%s" % (
             hashlib.md5(self.email).hexdigest()
         )
-    
-    @property
-    def relative_date(self):
-        return relative_timesince(self.created)

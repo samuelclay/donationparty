@@ -2,87 +2,89 @@
 {% load donations %}
 
 {% block content %}
-<div class="jumbotron">
-	<h1>Donation Party!</h1>
 
-	<p class="lead running"><img src="/mediafiles/img/eff.png" />Securely donate a randomly selected amount up to <strong>$10</strong>. The person who donates the most wins something cool from Amazon.</p>
+<div class="boxed lead running">
+    <img src="/mediafiles/img/eff.png" />
+    <p>Securely donate a randomly selected amount between <strong>$1 and $10</strong>. The person who donates the most wins something cool from Amazon!</p>
+    
+    <div class="social">
+        <label for="name">Share the party and gather more donations!</label>
+        <input type="text" value="{{ request.build_absolute_uri }}" name="share"/>
+        <span class="buttons">
+            <div class="fb-send"></div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Party time! Excellent! {{request.build_absolute_uri }}">Tweet</a>
+        </span>
+    </div>
+</div>
 
-<form action="/charge" method="post" id="payment-form">
-    {% csrf_token %}
-    <div class="NB-creditcards">
-        <img src="https://manage.stripe.com/img/credit_cards/visa.png">
-        <img src="https://manage.stripe.com/img/credit_cards/mastercard.png">
-        <img src="https://manage.stripe.com/img/credit_cards/amex.png">
-        <img src="https://manage.stripe.com/img/credit_cards/discover.png">
+<div class="row-fluid">
+    <div class="span5 boxed">
+        <form action="/charge" method="post" id="payment-form">
+            <h3>Your Donation</h3>
+            
+            {% csrf_token %}
+            <div class="NB-creditcards">
+                <img src="https://manage.stripe.com/img/credit_cards/visa.png">
+                <img src="https://manage.stripe.com/img/credit_cards/mastercard.png">
+                <img src="https://manage.stripe.com/img/credit_cards/amex.png">
+                <img src="https://manage.stripe.com/img/credit_cards/discover.png">
+            </div>
+            <input type="hidden" name="round_id" value="{{ round.url }}" />
+            <span class="payment-errors"></span>
+            <div class="form-row">
+                <label for="donator-name">Your name</label>
+                <input type="text" name="name" id="donator-name" />
+            </div>
+            <div class="form-row">
+                <label for="donator-email">Your email</label>
+                <input type="text" name="email" id="donator-email" />
+            </div>
+            <div class="form-row">
+                <label for="card-number">Card number</label>
+                <input type="text" size="20" autocomplete="off" class="card-number" id="card-number" />
+            </div>
+            <div class="form-row">
+                <label>CVC</label>
+                <input type="text" size="4" autocomplete="off" class="card-cvc" />
+            </div>
+            <div class="form-row">
+                <label>Expiration</label>
+                <select class="card-expiry-month">
+                    <option value="01">01 - January</option>
+                    <option value="02">02 - February</option>
+                    <option value="03">03 - March</option>
+                    <option value="04">04 - April</option>
+                    <option value="05">05 - May</option>
+                    <option value="06">06 - June</option>
+                    <option value="07">07 - July</option>
+                    <option value="08">08 - August</option>
+                    <option value="09">09 - September</option>
+                    <option value="10">10 - October</option>
+                    <option value="11">11 - November</option>
+                    <option value="12">12 - December</option>
+                </select>
+                <select class="card-expiry-year">
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-button btn">Donate $1 - $10</button>
+        </form>
     </div>
-    <input type="hidden" name="round_id" value="{{ round.url }}" />
-    <span class="payment-errors"></span>
-    <div class="form-row">
-        <label for="donator-name">Your name</label>
-        <input type="text" name="name" id="donator-name" />
+    <div class="span7">
+        <ol>
+            {% render_donations round.donations.all %}
+        </ol>
     </div>
-    <div class="form-row">
-        <label for="donator-email">Your email</label>
-        <input type="text" name="email" id="donator-email" />
-    </div>
-    <div class="form-row">
-        <label for="card-number">Card number</label>
-        <input type="text" size="20" autocomplete="off" class="card-number" id="card-number" />
-    </div>
-    <div class="form-row">
-        <label>CVC</label>
-        <input type="text" size="4" autocomplete="off" class="card-cvc" />
-    </div>
-    <div class="form-row">
-        <label>Expiration</label>
-        <select class="card-expiry-month">
-            <option value="01">01 - January</option>
-            <option value="02">02 - February</option>
-            <option value="03">03 - March</option>
-            <option value="04">04 - April</option>
-            <option value="05">05 - May</option>
-            <option value="06">06 - June</option>
-            <option value="07">07 - July</option>
-            <option value="08">08 - August</option>
-            <option value="09">09 - September</option>
-            <option value="10">10 - October</option>
-            <option value="11">11 - November</option>
-            <option value="12">12 - December</option>
-        </select>
-        <select class="card-expiry-year">
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-        </select>
-    </div>
-    <button type="submit" class="submit-button">Submit Payment</button>
-</form>
+</div>
 
 <div class="DP-donations">
     {% render_donations round.donations.all %}
 </div>
 
-<div class="social">
-	<p>
-	Share this link to invite friends to the party:
-	</p>
-	<input type="text" value="{{ request.build_absolute_uri }}" />
-	<div class="buttons">
-	    <div class="fb-send"></div>
-	    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Party time! Excellent! {{request.build_absolute_uri }}">Tweet</a>
-    	</div>
-</div>
-<p>
-	Or invite them directly via email (comma separated):
-</p>
-<form action="/invite" method="post" id="invite_via_email">
-	{% csrf_token %}
-	<input type="hidden" name="round_id" value="{{ round.url }}" />
-  <input type="text" name="invites" placeholder="bob@test.com, fred@test.com"/><br/>
-  <input type="submit" />
-</form>
 {% endblock %}

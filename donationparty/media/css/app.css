@@ -1,8 +1,11 @@
-body{padding-top:20px;padding-bottom:40px;}
-.container-narrow{margin:0 auto;max-width:700px;}
+@import '../css/bootstrap.css';
+@import '../css/bootstrap-responsive.css';
+body{padding-top:20px;padding-bottom:40px;background:#fdfbf1;}
+.container-narrow{margin:0 auto;max-width:760px;}
 .container-narrow>hr{margin:30px 0;}
-.jumbotron{margin:60px 0;text-align:center;}.jumbotron h1{font-size:72px;line-height:1;}
+.jumbotron{margin:60px 0;text-align:center;}.jumbotron h1{font-size:60px;line-height:1;text-shadow:0 1px 0 #fff;}
 .jumbotron .btn{font-size:21px;padding:14px 24px;}
+.boxed{box-shadow:0 1px 2px rgba(0, 0, 0, 0.4);background:#fff;margin-bottom:20px;}
 .charities{margin:0 0 60px;padding:0;float:left;width:100%;}.charities .charity{display:inline-block;width:20%;height:120px;text-align:center;float:left;}.charities .charity img{width:100px;height:100px;}
 .charities .charity label{border-bottom:5px solid transparent;height:120px;}
 .charities .charity.checked label{background:#f5f5f5;border-bottom:5px solid #5bb75b;}
@@ -10,9 +13,13 @@ body{padding-top:20px;padding-bottom:40px;}
 .start-party{text-align:center;margi:30px 0;}
 .players .player{position:relative;}.players .player img{position:absolute;width:100px;height:100px;}
 .players .player p.name{padding-left:120px;}.players .player p.name .amount{width:120px;float:right;line-height:100px;font-size:20px;font-weight:bold;}
+hr{border-top:1px solid #f7eec4;}
 .smallprint{color:#aaa;text-align:center;margin:30px 0;}
-.social{margin:30px 0;background-color:#F1F1F1;text-align:center;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;padding:15px;}.social input{background-color:#FFF;width:300px;}
-.social .fb-send{top:-3px;}
+.social{margin:30px 0 0;font-size:14px;height:65px;}.social label{font-weight:bold;}
+.social input{background-color:#FFF;width:300px;margin-right:10px;}
+.social .fb-send{position:relative;top:-3px;}
 .stripe-button-inner{margin-left:294px !important;}
-.lead.running{text-align:left;overflow:hidden;}.lead.running img{float:left;margin-right:30px;width:60px;height:60px;}
+.lead.running{text-align:left;padding:20px 20px 20px 100px;position:relative;}.lead.running img{position:absolute;top:20px;left:20px;width:60px;height:60px;}
+#payment-form{padding:20px;}#payment-form img{width:21px;height:14px;}
+#payment-form h3{margin:0 -20px 10px;padding:0 20px;background:#efefef;}
 .footer{text-align:center;}

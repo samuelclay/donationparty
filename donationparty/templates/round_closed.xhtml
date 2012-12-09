@@ -3,11 +3,19 @@
 
 {% block content %}
 
+{% if round.failed %}
+<div class="boxed lead running">
+    <img src="/mediafiles/img/{{ round.charity }}.png" />
+    <h2>The Party is Over</h2>
+    <p class="lead">Unfortunately not enough people joined this party for it to succeed. <strong>No money will be deducted or donated</strong>. You can always start another party and share the link!</p>
+</div>
+{% else %}
 <div class="boxed lead running">
     <img src="/mediafiles/img/{{ round.charity }}.png" />
     <h2>${{amount_donated}} Donated to {{ round.charity_name }}!</h2>
     <p class="lead">Give yourselves a huge pat on the back. WINNER won with a random donation of <strong>$AMOUNT</strong> and will receive something frickin' awesome in the mail soon!</p>
 </div>
+{% endif %}
 
 <div class="row-fluid">
     <div class="span5 boxed finish-info">
@@ -37,7 +45,7 @@
         {% endif %}
     </div>
     <div class="span7">
-        <ol class="donations">
+        <ol class="donations {% if round.failed %}failed{% endif %}">
             {% render_donations round %}
         </ol>
     </div>

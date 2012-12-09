@@ -36,8 +36,8 @@ class Round(models.Model):
     def charity_name(self):
         charities = {
             "eff": "Electronic Frontier Foundation",
-            "childsplay": "Childsplay",
-            "redcross": "Red Cross",
+            "childsplay": "Child's Play",
+            "redcross": "American Red Cross",
             "oxfam": "Oxfam",
             "greenpeace": "Greenpeace",
         }

@@ -34,5 +34,6 @@ body{padding-top:20px;padding-bottom:40px;background:#fdfbf1;}
 .donations li.DP-donation h3{line-height:1.6;margin:0;}
 .donations li.DP-donation:first-child{border-top:0;}
 .donations li.DP-donation:last-child{border-bottom:0;}
+.donations.failed li.DP-donation .DP-donation-amount{color:#b94a48;}
 .footer{color:rgba(0, 0, 0, 0.4);}.footer .powered-by{padding:10px 0 0;}
 .footer .powered-by-stripe{float:right;}.footer .powered-by-stripe img{width:119px;height:26px;}

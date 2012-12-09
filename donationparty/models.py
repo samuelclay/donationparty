@@ -92,6 +92,6 @@ class Donation(models.Model):
             print "STRIPE ERRROR: %s" % e
     
     def gravatar_url(self):
-        return "https://www.gravatar.com/avatar/%s" % (
+        return "https://www.gravatar.com/avatar/%s?d=retro" % (
             hashlib.md5(self.email).hexdigest()
         )

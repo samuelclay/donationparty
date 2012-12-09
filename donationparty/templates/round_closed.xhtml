@@ -12,8 +12,8 @@
 {% else %}
 <div class="boxed lead running">
     <img src="/mediafiles/img/{{ round.charity }}.png" />
-    <h2>${{amount_donated}} Donated to {{ round.charity_name }}!</h2>
-    <p class="lead">Give yourselves a huge pat on the back. WINNER won with a random donation of <strong>$AMOUNT</strong> and will receive something frickin' awesome in the mail soon!</p>
+    <h2>${{ round.total_raised|round_to:2 }} Donated to {{ round.charity_name }}!</h2>
+    <p class="lead">Give yourselves a huge pat on the back. {{ round.winner.name }} won with a random donation of <strong>${{ round.winner.amount|round_to:2 }}</strong> and will receive something frickin' awesome in the mail soon!</p>
 </div>
 {% endif %}
 
@@ -22,17 +22,25 @@
         {% if address_verification %}
             {% if round.winning_address1 %}
                 <h3>Got it!</h3>
-                <p>Thanks, your gift will be sent shortly. The world is now a slightly better place thanks to you.</p>
+                <p>Thanks, your winnings will be sent shortly. The world is now a slightly better place thanks to you.</p>
             {% else %}
-                <h3>What's your address?</h3>
-                <p>In order to ship your prize, you need to enter in your address:</p>
+                <h3>Get Your Prize</h3>
+                <p>You're the lucky winner! In order to ship your winnings, we need to know your address:</p>
                 <form method="POST" action="">
                     {% csrf_token %}
-                    <div class="address-name">{{ donation.name }}</div>
-                    <label for="address-1">Address:</label>
+                    
+                    <label for="name">Your name</label>
+                    <input type="text" name="name" value="{{ donation.name }}" />
+                    
+                    <label for="address1">Address Line 1</label>
                     <input type="text" name="address1" value="{% if round.winning_address1 %}{{ round.winning_address1 }}{% endif %}" />
+                    
+                    <label for="address1">Address Line 2</label>
                     <input type="text" name="address2" value="{% if round.winning_address2 %}{{ round.winning_address2 }}{% endif %}" />
-                    <input type="submit" value="Ship it">
+                    
+                    <div class="create">
+                        <input type="submit" class="btn btn-success btn-large" value="Ship It!">
+                    </div>
                 </form>
             {% endif %}
 

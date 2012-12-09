@@ -116,9 +116,11 @@ def address_verification(request, round_id, secret_token):
         return HttpResponseForbidden()
     
     if request.method == 'POST':
+        round.winner.name = request.POST['name']
         round.winning_address1 = request.POST['address1']
         round.winning_address2 = request.POST['address2']
         round.save()
+        round.winner.save()
     
     return render_to_response('round_closed.xhtml', {
         'round': round,

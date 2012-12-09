@@ -79,6 +79,16 @@ class Round(models.Model):
     def total_raised(self):
         return sum(donation.amount for donation in self.donations.all())
         
+    @property
+    def winner(self):
+        donations = self.donations.all()
+        max_donator = None
+        for donation in donations:
+            if not max_donator or donation.amount > max_donator:
+                max_donator = donation
+        
+        return max_donator
+        
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.FloatField()

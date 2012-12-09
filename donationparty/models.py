@@ -4,6 +4,7 @@ import uuid
 import random
 import stripe
 import pusher
+import datetime
 
 class Round(models.Model):
     url = models.CharField(max_length=6, unique=True)
@@ -23,8 +24,30 @@ class Round(models.Model):
         # XXX TODO: check for collision
         url = unicode(uuid.uuid4())[:6]
         return url
-
-    def donation_amount(self):
+        
+    @classmethod
+    def expire_rounds(cls):
+        rounds = cls.objects.filter(closed=False,
+                                    expire_time__lte=datetime.datetime.now())
+        for round in rounds:
+            round.expire_round()
+    
+    def expire_round(self):
+        if self.closed or datetime.datetime.now() < self.expire_time:
+            return
+        
+        self.closed = True
+        donations = self.donations.all()
+        total_raised = sum(donation.amount for donation in donations)
+        if total_raised >= self.max_amount:
+            self.failed = False
+            # XXX TODO: Email everybody
+        else:
+            self.failed = True
+            # XXX TODO: Email everybody
+        self.save()
+        
+    def random_donation_amount(self):
         return max(1, random.random() * self.max_amount)
         
     def notify_subscribers(self):
@@ -46,7 +69,7 @@ class Donation(models.Model):
     created = models.DateTimeField(auto_now=True)
     stripe_token = models.CharField(max_length=255)
     amount = models.FloatField()
-
+    
     def charge_card(self):
         amount = int(self.amount * 100)
         try:

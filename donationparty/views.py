@@ -40,7 +40,7 @@ def round_create(request, round_id):
     charity_name = request.POST['charity']
     
     round.charity = charity_name
-    round.expire_time = datetime.datetime.now() + datetime.timedelta(hours=3)
+    round.expire_time = datetime.datetime.now() + datetime.timedelta(hours=1)
     round.save()
     
     return HttpResponseRedirect(round.absolute_url())
@@ -50,7 +50,7 @@ def donation_create(request):
     stripe_token = request.POST['stripeToken']
     name = request.POST['name']
     email = request.POST['email']
-    amount = round.donation_amount()
+    amount = round.random_donation_amount()
     
     data = {
         'stripe_token': stripe_token,
@@ -88,8 +88,11 @@ def round_status(request, round_id):
         'donations': [{
             'name': person.name,
             'created': person.created,
-            'amount': round.closed and person.amount,
+            'amount': round.closed and __builtins__['round'](person.amount, 2),
         } for person in donations],
         'donations_template': donations_template,
     }
     return HttpResponse(json_encode(data), mimetype='application/json')
+    
+def cron(request):
+    Round.expire_rounds()

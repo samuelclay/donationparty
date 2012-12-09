@@ -1,10 +1,12 @@
+{% load donations %}
+
 {% for donation in donations %}
     <div class="DP-donation">
         <div class="DP-donation-name">{{ donation.name }}</div>
         <div class="DP-donation-avatar">
             <img class="DP-donation-avatar-photo" src="{{ donation.gravatar_url }}">
         </div>
-        <div class="DP-donation-name">{{ donation.amount }}</div>
+        <div class="DP-donation-name">{{ donation.amount|round:2 }}</div>
         <div class="DP-donation-name">{{ donation.stripe_token }}</div>
     </div>
 {% endfor %}

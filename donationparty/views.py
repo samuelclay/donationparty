@@ -112,14 +112,18 @@ def round_status(request, round_id, donated=False):
 def address_verification(request, round_id, secret_token):
     round = get_object_or_404(Round, url=round_id)
     if round.secret_token != secret_token:
-        raise HttpResponseForbidden
+        return HttpResponseForbidden()
     
     if request.method == 'POST':
         round.winning_address1 = request.POST['address1']
         round.winning_address2 = request.POST['address2']
         round.save()
     
-    
+    return render_to_response('round_closed.xhtml', {
+        'round': round,
+        'settings': settings,
+        'address_verification': True,
+    }, context_instance=RequestContext(request))
     
 def cron(request):
     Round.expire_rounds()

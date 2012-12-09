@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse
 import hashlib
 import uuid
 import random
@@ -49,14 +50,14 @@ class Round(models.Model):
         for round in rounds:
             round.expire_round()
     
-    def expire_round(self, force=True):
+    def expire_round(self, force=False):
         if not force and (self.closed or datetime.datetime.now() < self.expire_time):
             return
         
         self.closed = True
         donations = self.donations.all()
         total_raised = sum(donation.amount for donation in donations)
-        if total_raised >= self.max_amount:
+        if total_raised >= self.max_amount*2 or donations.count() >= 1:
             self.failed = False
             self.secret_token = str(uuid.uuid4())[:40].replace('-', '')
         else:
@@ -73,6 +74,9 @@ class Round(models.Model):
                           key=settings.PUSHER_KEY,
                           secret=settings.PUSHER_SECRET)
         p[self.url].trigger('new:charge', {})
+    
+    def address_verification_url(self):
+        return reverse('address_verification', kwargs=dict(round_id=self.url, secret_token=self.secret_token))
         
 class Product(models.Model):
     name = models.CharField(max_length=255)

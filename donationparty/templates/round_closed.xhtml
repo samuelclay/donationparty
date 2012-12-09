@@ -11,11 +11,30 @@
 
 <div class="row-fluid">
     <div class="span5 boxed finish-info">
-        <p>Start your own party to collect donations for charity and have the chance to win something niiice.</p>
-        
-        <div class="create">
-            <a href="/" class="btn btn-large btn-success">Create a Party!</a>
-        </div>
+        {% if address_verification %}
+            {% if round.winning_address1 %}
+                <h3>Got it!</h3>
+                <p>Thanks, your gift will be sent shortly. The world is now a slightly better place thanks to you.</p>
+            {% else %}
+                <h3>What's your address?</h3>
+                <p>In order to ship your prize, you need to enter in your address:</p>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="address-name">{{ donation.name }}</div>
+                    <label for="address-1">Address:</label>
+                    <input type="text" name="address1" value="{% if round.winning_address1 %}{{ round.winning_address1 }}{% endif %}" />
+                    <input type="text" name="address2" value="{% if round.winning_address2 %}{{ round.winning_address2 }}{% endif %}" />
+                    <input type="submit" value="Ship it">
+                </form>
+            {% endif %}
+
+        {% else %}
+            <p>Start your own party to collect donations for charity and have the chance to win something niiice.</p>
+    
+            <div class="create">
+                <a href="/" class="btn btn-large btn-success">Create a Party!</a>
+            </div>
+        {% endif %}
     </div>
     <div class="span7">
         <ol class="donations">

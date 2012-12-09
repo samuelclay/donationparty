@@ -157,6 +157,38 @@ hr {
 
 #payment-form {
 	padding: 20px;
+	margin: 0;
+	
+	.form-row {
+		position: relative;
+	}
+	
+	.NB-creditcards {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	
+	label {
+		margin: 0 0 2px;
+	}
+	
+	input[type=text] {
+		width:96%;
+	}
+	
+	input.card-cvc {
+		width: 30px;
+	}
+	
+	select.card-expiry-month {
+		width: 120px;
+		margin-right: 10px;
+	}
+	
+	select.card-expiry-year {
+		width: 80px;
+	}
 	
 	img {
 		width: 21px;
@@ -164,12 +196,38 @@ hr {
 	}
 	
 	h3 {
-		margin: 0 -20px 10px;
-		padding: 0 20px;
+		margin: -20px -20px 10px;
+		padding: 5px 20px;
 		background: #efefef;
+	}
+	
+	.donate {
+		text-align: center;
+		margin: 20px 0;
+		float: left;
+		width: 100%;
+		
+		input {
+			margin: 0 auto;
+		}
+	}
+}
+
+.donations {
+	list-style: none;
+	
+	li.empty {
+		background: url('/mediafiles/img/arrow-nw.png') no-repeat left top;
+		padding-top: 130px;
+		font-size: 21px;
+		text-align: center;
+		color: rgba(0, 0, 0, 0.5);
+		margin: 80px 50px;
+		line-height: 1.2;
 	}
 }
 
 .footer {
 	text-align: center;
+	color: rgba(0, 0, 0, 0.4);
 }

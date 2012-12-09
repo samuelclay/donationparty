@@ -64,7 +64,7 @@ def donation_create(request):
     donation.charge_card()
     round.notify_subscribers()
     
-    return HttpResponseRedirect(round.absolute_url())
+    return round_status(request, round.url)
 
 def invite_emails(request):
     round = get_object_or_404(Round, url=request.POST['round_id'])

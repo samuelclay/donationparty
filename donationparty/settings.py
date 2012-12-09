@@ -1,5 +1,6 @@
 import os
 import redis
+import stripe
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -168,3 +169,5 @@ djcelery.setup_loader()
 #django-templated-emails
 TEMPLATED_EMAIL_TEMPLATE_DIR="email/"
 TEMPLATED_EMAIL_FILE_EXTENSION = 'email'
+
+stripe.api_key = STRIPE_SECRET

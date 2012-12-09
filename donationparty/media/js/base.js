@@ -7,20 +7,26 @@ DP.RealTime.prototype = {
     setup: function() {
         this.pusher = new Pusher(DP.PUSHER_KEY);
         this.channel = this.pusher.subscribe(DP.Round.url);
-        this.channel.bind('new:charge', _.bind(this.new_charge, this));
+        this.channel.bind('new:charge', _.bind(this.newCharge, this));
         console.log(["Subscribing to real-time", this.pusher, this.channel]);
     },
     
-    new_charge: function() {
+    newCharge: function() {
         console.log(["REAL-TIME: New Charge", arguments]);
-        this.reload_donations();
+        this.reloadDonations();
     },
     
-    reload_donations: function() {
-        $.get('/round_status/' + DP.Round.url, {}, function(data) {
-            console.log(["Round status", data]);
-            $('.DP-donations').html(data.donations_template);
-        });
+    reloadDonations: function(data) {
+        if (!data) {
+            $.get('/round_status/' + DP.Round.url, {}, this.renderDonations);
+        } else {
+            this.renderDonations(data);
+        }
+    },
+    
+    renderDonations: function(data) {
+        console.log(["Round status", data]);
+        $('.donations').html(data.donations_template);
     }
     
 };
@@ -29,5 +35,6 @@ DP.RealTime.prototype = {
 $(document).ready(function() {
 
     DP.realtime = new DP.RealTime();
+    DP.paymentform = new DP.PaymentForm();
 
 });

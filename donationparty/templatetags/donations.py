@@ -3,7 +3,7 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('donations.xhtml', takes_context=True)
-def render_donations(donations):
+def render_donations(context, donations):
     donated = context.get('request').COOKIES.get('donated_%s' % round.url)
     return {
         'donated': donated,

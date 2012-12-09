@@ -44,8 +44,8 @@ class Round(models.Model):
         for round in rounds:
             round.expire_round()
     
-    def expire_round(self):
-        if self.closed or datetime.datetime.now() < self.expire_time:
+    def expire_round(self, force=True):
+        if not force and (self.closed or datetime.datetime.now() < self.expire_time):
             return
         
         self.closed = True

@@ -11,6 +11,12 @@
     </li>
 {% endfor %}
 
+{% if donations and donated %}
+    <li class="nearly empty">
+        <p>Donate now to put money to a good cause and have a chance to win!</p>
+    </li>
+{% endif %}
+
 {% if not donations %}
     <li class="empty">
         <p>Awesome! Now donate a random amount to start the party, then invite your friends...</p>

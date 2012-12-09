@@ -3,11 +3,11 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('donations.xhtml', takes_context=True)
-def render_donations(context, donations):
+def render_donations(context, round):
     donated = context.get('request').COOKIES.get('donated_%s' % round.url)
     return {
         'donated': donated,
-        'donations': donations,
+        'donations': round.donations.all,
     }
     
 @register.inclusion_tag('payment_info.xhtml', takes_context=True)

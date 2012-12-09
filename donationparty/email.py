@@ -4,6 +4,14 @@ from django.core import mail
 
 from templated_email import get_templated_mail
 
+def multi_templated_email(templateName, to_emails, from_email, context):
+    """
+    send separate emails to multiple recipients using a template
+    """
+    for to in to_emails:
+      email = get_templated_mail(templateName, context=context, from_email=from_email, to=[to])
+      email.send()
+
 class Emailer:
   @staticmethod
   def email_invitees(round_url, round_donations, round_expiration, round_invitees):

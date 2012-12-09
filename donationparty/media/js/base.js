@@ -43,7 +43,7 @@ DP.RealTime.prototype = {
         var minutes = Math.floor(this.secondsLeft / 60);
         var seconds = this.secondsLeft % 60;
         if (seconds <= 9) seconds = "0" + seconds;
-        $timer.html(minutes + ":" + seconds + " left");
+        $timer.html(minutes + ":" + seconds + " <span>time left</span>");
         this.secondsLeft -= 1;
     }
     

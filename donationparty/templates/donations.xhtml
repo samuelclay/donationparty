@@ -9,3 +9,9 @@
         <p class="DP-donation-amount">{{ donation.amount|round:2 }}</p>
     </li>
 {% endfor %}
+
+{% if not donations %}
+    <li class="empty">
+        <p>Awesome! Now donate a random amount to start the party, then invite your friends...</p>
+    </li>
+{% endif %}

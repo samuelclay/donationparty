@@ -23,14 +23,8 @@
             <h3>Your Donation</h3>
             
             {% csrf_token %}
-            <div class="NB-creditcards">
-                <img src="https://manage.stripe.com/img/credit_cards/visa.png">
-                <img src="https://manage.stripe.com/img/credit_cards/mastercard.png">
-                <img src="https://manage.stripe.com/img/credit_cards/amex.png">
-                <img src="https://manage.stripe.com/img/credit_cards/discover.png">
-            </div>
             <input type="hidden" name="round_id" value="{{ round.url }}" />
-            <span class="payment-errors"></span>
+            <span class="payment-errors text-error"></span>
             <div class="form-row">
                 <label for="donator-name">Your name</label>
                 <input type="text" name="name" id="donator-name" />
@@ -40,15 +34,18 @@
                 <input type="text" name="email" id="donator-email" />
             </div>
             <div class="form-row">
+                <div class="NB-creditcards">
+                    <img src="https://manage.stripe.com/img/credit_cards/visa.png">
+                    <img src="https://manage.stripe.com/img/credit_cards/mastercard.png">
+                    <img src="https://manage.stripe.com/img/credit_cards/amex.png">
+                    <img src="https://manage.stripe.com/img/credit_cards/discover.png">
+                </div>
                 <label for="card-number">Card number</label>
                 <input type="text" size="20" autocomplete="off" class="card-number" id="card-number" />
             </div>
             <div class="form-row">
-                <label>CVC</label>
-                <input type="text" size="4" autocomplete="off" class="card-cvc" />
-            </div>
-            <div class="form-row">
-                <label>Expiration</label>
+                <span class="span10">
+                <label>Expiry</label>
                 <select class="card-expiry-month">
                     <option value="01">01 - January</option>
                     <option value="02">02 - February</option>
@@ -72,19 +69,24 @@
                     <option value="2017">2017</option>
                     <option value="2018">2018</option>
                 </select>
+            </span>
+            <span class="span2">
+                <div class="form-row">
+                    <label>CVC</label>
+                    <input type="text" size="4" autocomplete="off" class="card-cvc" />
+                </div>
+            </span>
             </div>
-            <button type="submit" class="submit-button btn">Donate $1 - $10</button>
+            <div class="donate">
+                <button type="submit" class="submit-button btn btn-primary btn-large">Donate $1 - $10</button>
+            </div>
         </form>
     </div>
     <div class="span7">
-        <ol>
+        <ol class="donations">
             {% render_donations round.donations.all %}
         </ol>
     </div>
-</div>
-
-<div class="DP-donations">
-    {% render_donations round.donations.all %}
 </div>
 
 {% endblock %}

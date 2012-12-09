@@ -17,9 +17,12 @@
         <script>
         var DP = {};
         DP.Round = {
-            'url': "{{ round.url }}"
+            'url': "{{ round.url }}",
+            'closed': {{ round.closed|yesno:"true,false" }}
         };
-        DP.secondsLeft = {{ round.seconds_left }};
+        {% if round.seconds_left > 0 %}
+        DP.Round.secondsLeft = {{ round.seconds_left }};
+        {% endif %}
         DP.PUSHER_KEY = "{{ settings.PUSHER_KEY }}";
         </script>
     </head>

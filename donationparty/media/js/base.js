@@ -10,7 +10,7 @@ DP.RealTime.prototype = {
         this.channel.bind('new:charge', _.bind(this.newCharge, this));
         console.log(["Subscribing to real-time", this.pusher, this.channel]);
         
-        this.secondsLeft = DP.secondsLeft;
+        this.secondsLeft = DP.Round.secondsLeft;
         this.reloader = setInterval(_.bind(this.reloadDonations, this), 1000*60);
         this.timer = setInterval(_.bind(this.renderTimer, this), 1000*1);
     },
@@ -47,8 +47,10 @@ DP.RealTime.prototype = {
 
 
 $(document).ready(function() {
-
-    DP.realtime = new DP.RealTime();
-    DP.paymentform = new DP.PaymentForm();
+    
+    if (!DP.Round.closed) {
+        DP.realtime = new DP.RealTime();
+        DP.paymentform = new DP.PaymentForm();
+    }
 
 });

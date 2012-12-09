@@ -55,9 +55,7 @@ class Round(models.Model):
             return
         
         self.closed = True
-        donations = self.donations.all()
-        total_raised = sum(donation.amount for donation in donations)
-        if total_raised >= self.max_amount*2 or donations.count() >= 1:
+        if self.total_raised() >= self.max_amount*2 or self.donations.count() >= 3:
             self.failed = False
             self.secret_token = str(uuid.uuid4())[:40].replace('-', '')
         else:
@@ -77,6 +75,9 @@ class Round(models.Model):
     
     def address_verification_url(self):
         return reverse('address_verification', kwargs=dict(round_id=self.url, secret_token=self.secret_token))
+
+    def total_raised(self):
+        return sum(donation.amount for donation in self.donations.all())
         
 class Product(models.Model):
     name = models.CharField(max_length=255)

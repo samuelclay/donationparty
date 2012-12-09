@@ -1,0 +1,5 @@
+{% block subject %}Round {{url}} ended with a winner! {% endblock %}
+
+{% block plain %}
+Round {{ url }} ended with {{ total }} donated.
+{% endblock %}

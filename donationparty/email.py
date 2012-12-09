@@ -42,7 +42,8 @@ class Emailer:
       context = {
           'winner': 'round.winner',
           'charity': round.charity,
-          'url': round.url
+          'url': round.url,
+          'total': round.total_raised()
       }
 
       donators = round.donations.all()

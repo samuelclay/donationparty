@@ -23,7 +23,7 @@ DP.PaymentForm.prototype = {
     
     stripeResponseHandler: function(status, response) {
         if (response.error) {
-            $('.submit-button').removeAttr("disabled");
+            $('.submit-button').removeAttr("disabled").removeClass('active');
             $(".payment-errors").html(response.error.message);
         } else {
             var form$ = $("#payment-form");

@@ -1,0 +1,7 @@
+{% block subject %}You've been invited to a Donation Party!{% endblock %}
+
+{% block plain %}
+    You've been invited to a Donation Party!
+    Donators so far: %s 
+    You have %d hours %d minutes left to <a href='https://%s%s'>donate!</a>
+{% endblock %}

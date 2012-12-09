@@ -164,3 +164,7 @@ BROKER_BACKEND = 'django'
 
 import djcelery
 djcelery.setup_loader()
+
+#django-templated-emails
+TEMPLATED_EMAIL_TEMPLATE_DIR="email/"
+TEMPLATED_EMAIL_FILE_EXTENSION = 'email'

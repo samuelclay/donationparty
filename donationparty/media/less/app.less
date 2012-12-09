@@ -130,10 +130,7 @@ body {
 	}
 }
 
-#payment-form {
-	padding: 20px;
-	margin: 0;
-	
+.payment-info {
 	.form-row {
 		position: relative;
 	}
@@ -170,12 +167,25 @@ body {
 		width: 60px;
 	}
 	
+	.btn.active {
+		background: #5bb75b url('/mediafiles/img/loading.gif') no-repeat center center;
+		color: transparent;
+		text-shadow: none;
+	}
+}
+
+.payment-info,
+.finish-info {
+	padding: 20px;
+	margin: 0;
+	
 	h3 {
 		margin: -20px -20px 10px;
 		padding: 5px 20px;
 		background: #efefef;
 	}
 	
+	.create,
 	.donate {
 		text-align: center;
 		margin: 20px 0;
@@ -185,12 +195,6 @@ body {
 		input {
 			margin: 0 auto;
 		}
-	}
-	
-	.btn.active {
-		background: #5bb75b url('/mediafiles/img/loading.gif') no-repeat center center;
-		color: transparent;
-		text-shadow: none;
 	}
 }
 

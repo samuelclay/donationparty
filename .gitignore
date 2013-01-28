@@ -4,3 +4,5 @@ venv
 *.swp
 celerybeat-schedule.*
 donationparty/static/*
+donationparty/dev_settings.py
+donationparty/prod_settings.py

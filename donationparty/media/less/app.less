@@ -146,10 +146,6 @@ body {
 		}
 	}
 	
-	input.card-cvc {
-		width: 30px;
-	}
-	
 	select.card-expiry-month {
 		width: 120px;
 		margin-right: 10px;
@@ -196,6 +192,10 @@ body {
 	
 	input[type=text] {
 		width:96%;
+	}
+	
+	input.card-cvc {
+		width: 30px;
 	}
 }
 
@@ -252,6 +252,10 @@ body {
 		}
 	}
 	
+	li.DP-donation.highlighted {
+		background: #f7eec4;
+	}
+	
 	li.DP-donation:first-child {
 		border-top: 0;
 	}
@@ -269,9 +273,22 @@ body {
 	}
 }
 
-.footer {
-	color: rgba(0, 0, 0, 0.4);
+.timer {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: right;
 	
+	color: rgba(0, 0, 0, 0.75);
+	
+	span {
+		color: rgba(0, 0, 0, 0.4);
+		font-size: 11px;
+		display: block;
+	}
+}
+
+.footer {
+	color: rgba(0, 0, 0, 0.4);	
 	.powered-by {
 		padding: 10px 0 0;
 	}
